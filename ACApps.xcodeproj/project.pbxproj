@@ -7,16 +7,70 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		811287C81C8FE91D00F7C487 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811287C71C8FE91D00F7C487 /* UIKit.framework */; };
+		811287ED1C8FEA0700F7C487 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811287E31C8FE9F400F7C487 /* CryptoSwift.framework */; };
+		811287EE1C8FEA0700F7C487 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 811287E31C8FE9F400F7C487 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8142FE071C83D42E0068BB6E /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8142FE061C83D42E0068BB6E /* XMLParser.swift */; };
+		8159EA4A1C8E8A79007599AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8159EA491C8E8A79007599AE /* Main.storyboard */; };
+		8159EA4C1C8E8F0A007599AE /* LocationOrCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */; };
+		8159EA6A1C8E93FD007599AE /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159EA691C8E93FD007599AE /* AlertView.swift */; };
+		816C79E11C8D090200C1D8EC /* DataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79E01C8D090200C1D8EC /* DataConnection.swift */; };
+		816C79EA1C8D0CF500C1D8EC /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79E91C8D0CF500C1D8EC /* TextField.swift */; };
+		816C79EC1C8D0D3F00C1D8EC /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79EB1C8D0D3F00C1D8EC /* TextFieldEffects.swift */; };
+		816C79EF1C8D0DE600C1D8EC /* userSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79EE1C8D0DE600C1D8EC /* userSignupViewController.swift */; };
+		816C7A1E1C8D443E00C1D8EC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C7A1D1C8D443E00C1D8EC /* Launch Screen.storyboard */; };
 		81BD51321C812D5100FA7FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51311C812D5100FA7FB3 /* AppDelegate.swift */; };
-		81BD51341C812D5100FA7FB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51331C812D5100FA7FB3 /* ViewController.swift */; };
-		81BD51371C812D5100FA7FB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BD51351C812D5100FA7FB3 /* Main.storyboard */; };
+		81BD51341C812D5100FA7FB3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51331C812D5100FA7FB3 /* MapView.swift */; };
 		81BD51391C812D5100FA7FB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81BD51381C812D5100FA7FB3 /* Assets.xcassets */; };
-		81BD513C1C812D5100FA7FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BD513A1C812D5100FA7FB3 /* LaunchScreen.storyboard */; };
 		81BD51471C812D5100FA7FB3 /* ACAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51461C812D5100FA7FB3 /* ACAppsTests.swift */; };
 		81BD51521C812D5100FA7FB3 /* ACAppsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51511C812D5100FA7FB3 /* ACAppsUITests.swift */; };
+		81BD51721C8136D900FA7FB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BD51711C8136D900FA7FB3 /* MapKit.framework */; };
+		81E565C81C948AAD00477A75 /* passwordSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		811287E21C8FE9F400F7C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE45519693E190098E6F3;
+			remoteInfo = "CryptoSwift iOS";
+		};
+		811287E41C8FE9F400F7C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5596BDBB1BC8F220007E38D5;
+			remoteInfo = "CryptoSwift watchOS";
+		};
+		811287E61C8FE9F400F7C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75DF77721BC8EB59006E9520;
+			remoteInfo = "CryptoSwift OSX";
+		};
+		811287E81C8FE9F400F7C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75D614BF1BD844F2001358B2;
+			remoteInfo = "CryptoSwift tvOS";
+		};
+		811287EA1C8FE9F400F7C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE46019693E190098E6F3;
+			remoteInfo = CryptoSwiftTests;
+		};
+		811287EF1C8FEA0700F7C487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 754BE45419693E190098E6F3;
+			remoteInfo = "CryptoSwift iOS";
+		};
 		81BD51431C812D5100FA7FB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81BD51261C812D5100FA7FB3 /* Project object */;
@@ -33,13 +87,37 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		816C7A151C8D2EDB00C1D8EC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				811287EE1C8FEA0700F7C487 /* CryptoSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		811287C71C8FE91D00F7C487 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "../CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
+		8142FE061C83D42E0068BB6E /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+		8159EA491C8E8A79007599AE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
+		8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOrCustomerViewController.swift; sourceTree = "<group>"; };
+		8159EA691C8E93FD007599AE /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		816C79E01C8D090200C1D8EC /* DataConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConnection.swift; sourceTree = "<group>"; };
+		816C79E91C8D0CF500C1D8EC /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		816C79EB1C8D0D3F00C1D8EC /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		816C79EE1C8D0DE600C1D8EC /* userSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userSignupViewController.swift; sourceTree = "<group>"; };
+		816C79F41C8D0F9B00C1D8EC /* TextFieldEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TextFieldEffects.h; path = "../../TextFieldEffects-master/TextFieldEffects/TextFieldEffects/TextFieldEffects.h"; sourceTree = "<group>"; };
+		816C7A1D1C8D443E00C1D8EC /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		81BD512E1C812D5100FA7FB3 /* ACApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BD51311C812D5100FA7FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		81BD51331C812D5100FA7FB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		81BD51361C812D5100FA7FB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		81BD51331C812D5100FA7FB3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		81BD51381C812D5100FA7FB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		81BD513B1C812D5100FA7FB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81BD513D1C812D5100FA7FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BD51421C812D5100FA7FB3 /* ACAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BD51461C812D5100FA7FB3 /* ACAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAppsTests.swift; sourceTree = "<group>"; };
@@ -47,6 +125,9 @@
 		81BD514D1C812D5100FA7FB3 /* ACAppsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ACAppsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BD51511C812D5100FA7FB3 /* ACAppsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAppsUITests.swift; sourceTree = "<group>"; };
 		81BD51531C812D5100FA7FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81BD51711C8136D900FA7FB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		81D5C0081C824AAF00C065AA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = passwordSetupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +135,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				811287ED1C8FEA0700F7C487 /* CryptoSwift.framework in Frameworks */,
+				811287C81C8FE91D00F7C487 /* UIKit.framework in Frameworks */,
+				81BD51721C8136D900FA7FB3 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,13 +158,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		811287DB1C8FE9F400F7C487 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				811287E31C8FE9F400F7C487 /* CryptoSwift.framework */,
+				811287E51C8FE9F400F7C487 /* CryptoSwift.framework */,
+				811287E71C8FE9F400F7C487 /* CryptoSwift.framework */,
+				811287E91C8FE9F400F7C487 /* CryptoSwift.framework */,
+				811287EB1C8FE9F400F7C487 /* CryptoSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8159EA4D1C8E9349007599AE /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				8159EA691C8E93FD007599AE /* AlertView.swift */,
+			);
+			name = AlertView;
+			sourceTree = "<group>";
+		};
+		816C79DF1C8D08D400C1D8EC /* DataConnections */ = {
+			isa = PBXGroup;
+			children = (
+				8142FE061C83D42E0068BB6E /* XMLParser.swift */,
+				816C79E01C8D090200C1D8EC /* DataConnection.swift */,
+			);
+			name = DataConnections;
+			sourceTree = "<group>";
+		};
+		816C79E21C8D093200C1D8EC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */,
+				816C79EE1C8D0DE600C1D8EC /* userSignupViewController.swift */,
+				81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */,
+				81BD51331C812D5100FA7FB3 /* MapView.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		816C79E61C8D09FB00C1D8EC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8159EA4D1C8E9349007599AE /* AlertView */,
+				816C79ED1C8D0D7000C1D8EC /* TextFields */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		816C79ED1C8D0D7000C1D8EC /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				816C79EB1C8D0D3F00C1D8EC /* TextFieldEffects.swift */,
+				816C79E91C8D0CF500C1D8EC /* TextField.swift */,
+				816C79F41C8D0F9B00C1D8EC /* TextFieldEffects.h */,
+			);
+			name = TextFields;
+			sourceTree = "<group>";
+		};
 		81BD51251C812D5100FA7FB3 = {
 			isa = PBXGroup;
 			children = (
+				811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */,
 				81BD51301C812D5100FA7FB3 /* ACApps */,
 				81BD51451C812D5100FA7FB3 /* ACAppsTests */,
 				81BD51501C812D5100FA7FB3 /* ACAppsUITests */,
 				81BD512F1C812D5100FA7FB3 /* Products */,
+				81BD51731C8136E100FA7FB3 /* Frameworks */,
+				81BD51681C812EBA00FA7FB3 /* Extra */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +244,12 @@
 			isa = PBXGroup;
 			children = (
 				81BD51311C812D5100FA7FB3 /* AppDelegate.swift */,
-				81BD51331C812D5100FA7FB3 /* ViewController.swift */,
-				81BD51351C812D5100FA7FB3 /* Main.storyboard */,
-				81BD51381C812D5100FA7FB3 /* Assets.xcassets */,
-				81BD513A1C812D5100FA7FB3 /* LaunchScreen.storyboard */,
-				81BD513D1C812D5100FA7FB3 /* Info.plist */,
+				816C7A1D1C8D443E00C1D8EC /* Launch Screen.storyboard */,
+				8159EA491C8E8A79007599AE /* Main.storyboard */,
+				816C79DF1C8D08D400C1D8EC /* DataConnections */,
+				816C79E21C8D093200C1D8EC /* ViewControllers */,
+				816C79E61C8D09FB00C1D8EC /* UI */,
+				81D5C0081C824AAF00C065AA /* MyPlayground.playground */,
 			);
 			path = ACApps;
 			sourceTree = "<group>";
@@ -125,6 +272,25 @@
 			path = ACAppsUITests;
 			sourceTree = "<group>";
 		};
+		81BD51681C812EBA00FA7FB3 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				81BD51381C812D5100FA7FB3 /* Assets.xcassets */,
+				81BD513D1C812D5100FA7FB3 /* Info.plist */,
+			);
+			name = Extra;
+			path = ACApps;
+			sourceTree = "<group>";
+		};
+		81BD51731C8136E100FA7FB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				811287C71C8FE91D00F7C487 /* UIKit.framework */,
+				81BD51711C8136D900FA7FB3 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,10 +301,12 @@
 				81BD512A1C812D5100FA7FB3 /* Sources */,
 				81BD512B1C812D5100FA7FB3 /* Frameworks */,
 				81BD512C1C812D5100FA7FB3 /* Resources */,
+				816C7A151C8D2EDB00C1D8EC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				811287F01C8FEA0700F7C487 /* PBXTargetDependency */,
 			);
 			name = ACApps;
 			productName = ACApps;
@@ -218,6 +386,12 @@
 			mainGroup = 81BD51251C812D5100FA7FB3;
 			productRefGroup = 81BD512F1C812D5100FA7FB3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 811287DB1C8FE9F400F7C487 /* Products */;
+					ProjectRef = 811287C91C8FE9F200F7C487 /* CryptoSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				81BD512D1C812D5100FA7FB3 /* ACApps */,
@@ -227,14 +401,52 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		811287E31C8FE9F400F7C487 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 811287E21C8FE9F400F7C487 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		811287E51C8FE9F400F7C487 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 811287E41C8FE9F400F7C487 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		811287E71C8FE9F400F7C487 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 811287E61C8FE9F400F7C487 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		811287E91C8FE9F400F7C487 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 811287E81C8FE9F400F7C487 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		811287EB1C8FE9F400F7C487 /* CryptoSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CryptoSwiftTests.xctest;
+			remoteRef = 811287EA1C8FE9F400F7C487 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		81BD512C1C812D5100FA7FB3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81BD513C1C812D5100FA7FB3 /* LaunchScreen.storyboard in Resources */,
+				816C7A1E1C8D443E00C1D8EC /* Launch Screen.storyboard in Resources */,
 				81BD51391C812D5100FA7FB3 /* Assets.xcassets in Resources */,
-				81BD51371C812D5100FA7FB3 /* Main.storyboard in Resources */,
+				8159EA4A1C8E8A79007599AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +471,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81BD51341C812D5100FA7FB3 /* ViewController.swift in Sources */,
+				8142FE071C83D42E0068BB6E /* XMLParser.swift in Sources */,
+				816C79EF1C8D0DE600C1D8EC /* userSignupViewController.swift in Sources */,
+				8159EA6A1C8E93FD007599AE /* AlertView.swift in Sources */,
+				816C79E11C8D090200C1D8EC /* DataConnection.swift in Sources */,
+				816C79EC1C8D0D3F00C1D8EC /* TextFieldEffects.swift in Sources */,
+				81E565C81C948AAD00477A75 /* passwordSetupViewController.swift in Sources */,
+				8159EA4C1C8E8F0A007599AE /* LocationOrCustomerViewController.swift in Sources */,
+				81BD51341C812D5100FA7FB3 /* MapView.swift in Sources */,
+				816C79EA1C8D0CF500C1D8EC /* TextField.swift in Sources */,
 				81BD51321C812D5100FA7FB3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +503,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		811287F01C8FEA0700F7C487 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CryptoSwift iOS";
+			targetProxy = 811287EF1C8FEA0700F7C487 /* PBXContainerItemProxy */;
+		};
 		81BD51441C812D5100FA7FB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81BD512D1C812D5100FA7FB3 /* ACApps */;
@@ -294,25 +519,6 @@
 			targetProxy = 81BD514E1C812D5100FA7FB3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		81BD51351C812D5100FA7FB3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				81BD51361C812D5100FA7FB3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		81BD513A1C812D5100FA7FB3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				81BD513B1C812D5100FA7FB3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		81BD51541C812D5100FA7FB3 /* Debug */ = {
@@ -400,10 +606,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ACApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brandon.Phan.ACApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -411,10 +619,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ACApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brandon.Phan.ACApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -485,6 +695,7 @@
 				81BD51581C812D5100FA7FB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81BD51591C812D5100FA7FB3 /* Build configuration list for PBXNativeTarget "ACAppsTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +704,7 @@
 				81BD515B1C812D5100FA7FB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81BD515C1C812D5100FA7FB3 /* Build configuration list for PBXNativeTarget "ACAppsUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +713,7 @@
 				81BD515E1C812D5100FA7FB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

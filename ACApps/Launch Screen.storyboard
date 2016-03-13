@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarePackage-Logo_SplashsScreen" translatesAutoresizingMaskIntoConstraints="NO" id="DYb-td-FHe">
+                                <rect key="frame" x="37" y="184" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="n2U-cK-R7f"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="n2U-cK-R7f"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="CJt-tV-jag"/>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="135" id="Eqn-bk-68z"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="DYb-td-FHe" secondAttribute="bottom" constant="145" id="MN3-Wa-R8L"/>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="1:2" id="cP9-cE-795"/>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="21" id="jiL-f4-dJP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="DYb-td-FHe" secondAttribute="bottom" constant="183" id="loQ-Ui-j6p"/>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="164" id="ptD-LV-2JU"/>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qHW-Xs-tWd"/>
+                            <constraint firstItem="DYb-td-FHe" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tCY-mi-G9N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Eqn-bk-68z"/>
+                                <exclude reference="cP9-cE-795"/>
+                                <exclude reference="tCY-mi-G9N"/>
+                                <exclude reference="MN3-Wa-R8L"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CarePackage-Logo_SplashsScreen" width="3000" height="3000"/>
+    </resources>
+</document>
