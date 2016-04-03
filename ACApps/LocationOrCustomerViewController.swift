@@ -16,6 +16,7 @@ class LocationOrCustomerViewController: UIViewController {
     let userSignUpViewController = userSignupViewController()
     
     @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var logoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +33,13 @@ class LocationOrCustomerViewController: UIViewController {
             
             self.view.addSubview(blurView)
 
-            //Display the alert views
-            self.alertView.addButton("OK", target: self, selector: Selector("OKButtonPressed:"))
-            self.alertView.showInfo("Info", subTitle: "First we have to ask you a question")
+            if NSUserDefaults.isFirstLaunch() {
+                //Display the alert views
+                self.alertView.addButton("OK", target: self, selector: #selector(LocationOrCustomerViewController.OKButtonPressed(_:)))
+                self.alertView.showInfo("Info", subTitle: "First we have to ask you a question")
+            } else {
+                print("Not first Launch")
+            }
         }
     }
     
@@ -43,8 +48,8 @@ class LocationOrCustomerViewController: UIViewController {
         dispatch_async(dispatch_get_main_queue()) {
             //Set up second alert view and show it
             let alertView1 = SCLAlertView()
-            alertView1.addButton("Customer of service", target: self, selector: Selector("isUserofService:"))
-            alertView1.addButton("Drop off location", target:self, selector: Selector("isDropOffLocation:"))
+            alertView1.addButton("Customer of service", target: self, selector: #selector(LocationOrCustomerViewController.isCustomerOfService(_:)))
+            alertView1.addButton("Drop off location", target:self, selector: #selector(LocationOrCustomerViewController.isDropOffLocation(_:)))
             alertView1.showEdit("Info", subTitle: "Select who you are")
             self.alertView.hideView()
         }
@@ -52,17 +57,22 @@ class LocationOrCustomerViewController: UIViewController {
     
     //Actions for second alert view
     func isDropOffLocation(sender: SCLAlertView) {
-
-        let storyobard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyobard.instantiateViewControllerWithIdentifier("locationSignupViewController") as! UINavigationController
-        let navigationController = UINavigationController(rootViewController: VC)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentViewControllerUsingNavigationController("locationSignupViewController", animated: true, CompletionHandler: nil)
+        }
     }
-    func isUserofService(sender: SCLAlertView) {
-        let VC = (self.storyboard?.instantiateViewControllerWithIdentifier("userSignupViewController"))! as! userSignupViewController
+    func isCustomerOfService(Selector: SCLAlertView) {
+        self.presentViewControllerUsingNavigationController("UserSignUpViewController", animated: true, CompletionHandler: nil)
+    }
+ 
+    func presentViewControllerUsingNavigationController(VCId: String, animated: Bool, CompletionHandler: (() -> Void)?) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyBoard.instantiateViewControllerWithIdentifier(VCId)
         let navigationController = UINavigationController(rootViewController: VC)
         self.presentViewController(navigationController, animated: true, completion: nil)
-        
     }
     
 }
+
+
+

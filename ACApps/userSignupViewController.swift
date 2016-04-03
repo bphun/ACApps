@@ -15,18 +15,17 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstNameTextField: TextField!
     @IBOutlet weak var lastNameTextField: TextField!
     @IBOutlet weak var emailTextField: TextField!
-
-    @IBOutlet weak var nextBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var nextViewcontrollerBarButtonItem: UIBarButtonItem!
+    
+    @IBOutlet var textFieldCollection: [TextField]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nextBarButtonItem.enabled = false
+        // Disable the Right UIBarButtonItem
+        nextViewcontrollerBarButtonItem.enabled = false
         
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-
-        self.navigationItem.leftBarButtonItem?.title = "title"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem()
-        
+        // Setup the TextFields
         firstNameTextField.delegate = self
         firstNameTextField.returnKeyType = .Continue
         
@@ -36,32 +35,49 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         emailTextField.returnKeyType = .Done
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("nextTextField:"), name: UIKeyboardWillHideNotification, object: nil)
-        firstNameTextField.addTarget(self, action: Selector("textFieldDidChange:"), forControlEvents: UIControlEvents.EditingChanged)
-        lastNameTextField.addTarget(self, action: Selector("textFieldDidChange:"), forControlEvents: UIControlEvents.EditingChanged)
-        emailTextField.addTarget(self, action: Selector("textFieldDidChange:"), forControlEvents: UIControlEvents.EditingChanged)
+        // Setup NSNotificationCenter to tell us when all text fields have been filled and have text
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userSignupViewController.nextTextField(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        firstNameTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        lastNameTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        emailTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+    }
+    
+    // Check if all text fields have text
+    func nextTextField(sender: UITextField) {
+        
     }
     
     func textFieldDidChange(sender: UITextField) {
         
-        if (firstNameTextField.text?.utf16.count > 0 && lastNameTextField.text?.utf16.count > 0 && emailTextField.text?.utf16.count > 0) {
-            nextBarButtonItem.enabled = true
+        
+        if textFieldCollection[0].text?.utf16.count > 0 && textFieldCollection[1].text?.utf16.count > 0 && textFieldCollection[2].text?.utf16.count > 0 {
+            nextViewcontrollerBarButtonItem.enabled = true
         } else {
-            nextBarButtonItem.enabled = false
+            nextViewcontrollerBarButtonItem.enabled = false
         }
     }
     
-    @IBAction func nextViewButton(sender: UIBarButtonItem) {
-
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            let storyoboard = UIStoryboard(name: "Main", bundle: nil)
-            let VC = storyoboard.instantiateViewControllerWithIdentifier("userPasswordSetupView")
-            let navigationController = UINavigationController(rootViewController: VC)
-            self.presentViewController(navigationController, animated: true, completion: nil)
-            
+    // Present the next VC after all text fields have been filled out
+    @IBAction func nextViewcontrollerButton(sender: UIBarButtonItem) {
+        if nextViewcontrollerBarButtonItem.enabled == true {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentViewControllerUsingNavigationController("userPasswordSetupView", animated: true, CompletionHandler: nil)
+            }
         }
-        
+    }
+
+    @IBAction func nextBarButtonItemPressed(sender: AnyObject) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentViewControllerUsingNavigationController("userPasswordSetupView", animated: true, CompletionHandler: nil)
+        }
+    }
+
+    
+    func presentViewControllerUsingNavigationController(VCId: String, animated: Bool, CompletionHandler: (() -> Void)?) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyBoard.instantiateViewControllerWithIdentifier(VCId)
+        let navigationController = UINavigationController(rootViewController: VC)
+        self.presentViewController(navigationController, animated: animated, completion: CompletionHandler)
     }
 
 
