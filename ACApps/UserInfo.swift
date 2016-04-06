@@ -2,7 +2,7 @@
 //  UserInfo.swift
 //  ACApps
 //
-//  Created by Brandon Phan on 4/3/16.
+//  Created by Brandon Phan on 4/4/16.
 //  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 

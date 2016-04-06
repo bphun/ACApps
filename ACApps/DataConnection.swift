@@ -56,6 +56,7 @@ class DownloadOperation : AsynchronousOperation {
         completeOperation()
         if error != nil {
             print(error)
+            debugPrint(error)
         }
     }
 }

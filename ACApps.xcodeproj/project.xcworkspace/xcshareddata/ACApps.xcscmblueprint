@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2C44E284CCC852A01162B87ED502A4FAB048E876",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1C729800DA1A868B9CBA9152024F6B7C5C248E42" : 0,
+    "2C44E284CCC852A01162B87ED502A4FAB048E876" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "52A73274-D4E7-430E-BD38-E90D413CAD4B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1C729800DA1A868B9CBA9152024F6B7C5C248E42" : "Dictionary\/",
+    "2C44E284CCC852A01162B87ED502A4FAB048E876" : "ACApps\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ACApps",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ACApps.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bphun\/Dictionary-Application.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C729800DA1A868B9CBA9152024F6B7C5C248E42"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bphun\/ACApps.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2C44E284CCC852A01162B87ED502A4FAB048E876"
+    }
+  ]
+}

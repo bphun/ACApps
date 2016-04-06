@@ -14,12 +14,26 @@ class LocationOrCustomerViewController: UIViewController {
     
     let alertView = SCLAlertView()
     let userSignUpViewController = userSignupViewController()
+    let appDelegate = AppDelegate()
+    
+    internal var isFirstLaunch = Bool()
+    
+    let userInfo = UserInfo()
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var logoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Determine if it is a users first time opening the application
+        if NSUserDefaults.isFirstLaunch() {
+            //Is first launch
+            isFirstLaunch = true
+        } else {
+            //Not first launch
+            isFirstLaunch = true  /* <- Change this line <- */
+        }
         
         dispatch_async(dispatch_get_main_queue()) {
             
@@ -30,15 +44,29 @@ class LocationOrCustomerViewController: UIViewController {
             let blurEffect = UIBlurEffect(style: .Dark)
             let blurView = UIVisualEffectView(effect: blurEffect)
             blurView.frame = self.view.bounds
+            UIView.animateWithDuration(0.2, animations: {
+                self.view.addSubview(blurView)
+            })
             
-            self.view.addSubview(blurView)
-
-            if NSUserDefaults.isFirstLaunch() {
-                //Display the alert views
+            if self.isFirstLaunch == true {
+                //Is first launch
                 self.alertView.addButton("OK", target: self, selector: #selector(LocationOrCustomerViewController.OKButtonPressed(_:)))
-                self.alertView.showInfo("Info", subTitle: "First we have to ask you a question")
+                self.alertView.showInfo("Info", subTitle: "Before you begin, we have to ask you a question.")
+                print("First launch")
             } else {
-                print("Not first Launch")
+                //Not first launch, Add the login view because it is not the first launch
+            
+                if self.appDelegate.shouldDisplayLogin == true {
+                    print("Wil display map view")
+                } else if self.appDelegate.shouldDisplayLogin == false {
+                    let loginAlertView = SCLAlertView()
+                    loginAlertView.addTextField("Username")
+                    loginAlertView.addTextField("Password")
+                    loginAlertView.addButton("Login", action: {
+                        print("Next view")
+                    })
+                    loginAlertView.showSuccess("Login", subTitle: "")
+                }
             }
         }
     }
@@ -58,20 +86,22 @@ class LocationOrCustomerViewController: UIViewController {
     //Actions for second alert view
     func isDropOffLocation(sender: SCLAlertView) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.presentViewControllerUsingNavigationController("locationSignupViewController", animated: true, CompletionHandler: nil)
+            self.presentViewControllerUsingNavigationControllerNoReturn("locationSignupViewController", animated: true, CompletionHandler: nil)
         }
     }
     func isCustomerOfService(Selector: SCLAlertView) {
-        self.presentViewControllerUsingNavigationController("UserSignUpViewController", animated: true, CompletionHandler: nil)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentViewControllerUsingNavigationControllerNoReturn("UserSignUpViewController", animated: true, CompletionHandler: nil)
+        }
     }
  
-    func presentViewControllerUsingNavigationController(VCId: String, animated: Bool, CompletionHandler: (() -> Void)?) {
+    func presentViewControllerUsingNavigationControllerNoReturn(VCID: String, animated: Bool, CompletionHandler: (() -> Void)?) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyBoard.instantiateViewControllerWithIdentifier(VCId)
+        let VC = storyBoard.instantiateViewControllerWithIdentifier(VCID)
         let navigationController = UINavigationController(rootViewController: VC)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        self.presentViewController(navigationController, animated: animated, completion: CompletionHandler)
+
     }
-    
 }
 
 

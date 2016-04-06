@@ -43,13 +43,9 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                 }
             })
         }
+        
         NSLog("Finish")
     }
-    
-    
-    
-    
-    
     
     func setupMapView() {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in

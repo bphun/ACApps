@@ -14,16 +14,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    var lastApplicationUseDate = NSDate()
+    let terminateTime = NSDate()
+    let lastTimeKey = "lastTime"
+    
+    var shouldDisplayLogin = Bool()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        NSThread.sleepForTimeInterval(0.1)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaultValues = ["lastTime" : NSDate()]
+        defaults.registerDefaults(defaultValues)
+        
+        lastApplicationUseDate = NSUserDefaults.standardUserDefaults().objectForKey(lastTimeKey) as! NSDate
+
+        let elapsedTime = NSDate().timeIntervalSinceDate(lastApplicationUseDate)
+        let duration = Int(elapsedTime)
+        print("Elapsed time \(elapsedTime)")
+        print("Duration \(duration)")
+        
+        if duration > 86400 || duration == 86400 {
+            shouldDisplayLogin = true
+            print("Should display Login")
+        } else {
+            shouldDisplayLogin = false
+            print("Should not display login")
+        }
+        
         return true
     }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(terminateTime, forKey: lastTimeKey)
+        
+        print("Terminate Date \(terminateTime)")
     }
     
     func applicationDidEnterBackground(application: UIApplication) {

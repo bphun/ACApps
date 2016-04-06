@@ -11,8 +11,18 @@ import UIKit
 
 class passwordSetupViewController: UIViewController {
     
+    var firstName = String()
+    var lastName = String()
+    var email = String()
+    @IBOutlet weak var doneBarButtonItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("First Name: \(firstName)",
+              "Last Name: \(lastName)",
+              "Email: \(email)")
     }
     
+    @IBAction func doneBarButtonItem(sender: AnyObject) {
+    }
 }

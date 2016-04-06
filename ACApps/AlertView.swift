@@ -275,6 +275,15 @@ public class SCLAlertView: UIViewController {
         txt.clearButtonMode = UITextFieldViewMode.WhileEditing
         txt.layer.masksToBounds = true
         txt.layer.borderWidth = 1.0
+        
+        txt.keyboardType = UIKeyboardType.Alphabet
+        txt.returnKeyType = .Continue
+        txt.enablesReturnKeyAutomatically = true
+        txt.autocorrectionType = .No
+        txt.autocapitalizationType = .None
+        txt.spellCheckingType = .No
+        
+        
         if title != nil {
             txt.placeholder = title!
         }
@@ -283,7 +292,7 @@ public class SCLAlertView: UIViewController {
         return txt
     }
     
-    public func addButton(title:String, action:()->Void)->SCLButton {
+    public func addButton(title:String, action: (()->Void)?)->SCLButton {
         let btn = addButton(title)
         btn.actionType = SCLActionType.Closure
         btn.action = action
@@ -413,8 +422,8 @@ public class SCLAlertView: UIViewController {
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Wait, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
     }
     
-    public func showEdit(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=SCLAlertViewStyle.Edit.defaultColorInt, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Edit, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
+    public func showEdit(title: String?, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=SCLAlertViewStyle.Edit.defaultColorInt, colorTextButton: UInt=0xFFFFFF, circleIconImage: UIImage? = nil) -> SCLAlertViewResponder {
+        return showTitle(title!, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Edit, colorStyle: colorStyle, colorTextButton: colorTextButton, circleIconImage: circleIconImage)
     }
     
     // showTitle(view, title, subTitle, style)
