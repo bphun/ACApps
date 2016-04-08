@@ -213,9 +213,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Password Setup" id="1q7-fy-7Iz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ZEa-6r-mA6"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Password Setup" id="1q7-fy-7Iz"/>
                     <connections>
                         <segue destination="LNX-7v-0sZ" kind="show" identifier="mapViewSegue1" id="kGX-aM-Dmg"/>
                     </connections>
