@@ -26,6 +26,7 @@
                     <navigationItem key="navigationItem" id="PRg-b0-FkK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="imageView" destination="muF-Ad-4xu" id="A6J-ze-OaU"/>
                         <outlet property="logoImageView" destination="muF-Ad-4xu" id="GLf-Dr-6vf"/>
                         <outlet property="navigationBar" destination="PRg-b0-FkK" id="GN2-OU-nOm"/>
                         <segue destination="bh3-eB-pAM" kind="show" identifier="locationSignupSegue" id="eb2-jl-99Q"/>
@@ -49,23 +50,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEq-Nh-kIM" customClass="TextField" customModule="ACApps">
-                                <rect key="frame" x="20" y="72" width="335" height="56"/>
-                                <color key="textColor" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.8583185673" green="0.57424628730000005" blue="0.60010683539999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MpV-1h-sBD" customClass="TextField" customModule="ACApps">
                                 <rect key="frame" x="20" y="136" width="335" height="56"/>
                                 <color key="textColor" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,25 +84,94 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NmS-5t-bQ8" customClass="TextField" customModule="ACApps">
+                                <rect key="frame" x="20" y="264" width="335" height="56"/>
+                                <color key="textColor" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.93333333330000001" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yor-B4-MIy" customClass="TextField" customModule="ACApps">
+                                <rect key="frame" x="20" y="328" width="335" height="56"/>
+                                <color key="textColor" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.93333333330000001" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CarePackage-Logo_SplashsScreen" translatesAutoresizingMaskIntoConstraints="NO" id="07u-Qy-LGz">
+                                <rect key="frame" x="87" y="424" width="200" height="200"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEq-Nh-kIM" customClass="TextField" customModule="ACApps">
+                                <rect key="frame" x="20" y="72" width="335" height="56"/>
+                                <color key="textColor" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.8583185673" green="0.57424628730000005" blue="0.60010683539999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" red="0.41568627450000001" green="0.47450980390000003" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="User Signup" id="BMa-69-FW0">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="HNi-K7-tfd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="HNi-K7-tfd">
                             <connections>
                                 <action selector="nextBarButtonItem:" destination="vU7-RK-F4g" id="qbR-mW-mWx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailTextField" destination="Ejl-RC-3mI" id="ZgQ-cu-Ahh"/>
-                        <outlet property="firstNameTextField" destination="uEq-Nh-kIM" id="kno-S8-ZW8"/>
-                        <outlet property="lastNameTextField" destination="MpV-1h-sBD" id="JKx-mw-bRO"/>
+                        <outlet property="confirmPasswordTextField" destination="yor-B4-MIy" id="JVh-uw-64X"/>
+                        <outlet property="emailTextField" destination="Ejl-RC-3mI" id="hXd-qH-C9a"/>
+                        <outlet property="firstNameTextField" destination="uEq-Nh-kIM" id="hXy-vu-9u5"/>
+                        <outlet property="lastNameTextField" destination="MpV-1h-sBD" id="aGe-TF-Pet"/>
                         <outlet property="nextBarButtonItem" destination="HNi-K7-tfd" id="2Cr-4t-i1b"/>
+                        <outlet property="passwordTextField" destination="NmS-5t-bQ8" id="kaR-ch-Y07"/>
                         <outletCollection property="textFieldCollection" destination="uEq-Nh-kIM" collectionClass="NSMutableArray" id="8eJ-py-JdG"/>
                         <outletCollection property="textFieldCollection" destination="MpV-1h-sBD" collectionClass="NSMutableArray" id="s0u-O6-zEw"/>
                         <outletCollection property="textFieldCollection" destination="Ejl-RC-3mI" collectionClass="NSMutableArray" id="qLm-zG-Lnt"/>
-                        <segue destination="LkN-K6-cTT" kind="show" identifier="passwordSetupSegue" id="c7Q-pq-70l"/>
+                        <outletCollection property="textFieldCollection" destination="NmS-5t-bQ8" collectionClass="NSMutableArray" id="Sd4-hq-8VA"/>
+                        <outletCollection property="textFieldCollection" destination="yor-B4-MIy" collectionClass="NSMutableArray" id="sCh-Di-zH3"/>
+                        <outletCollection property="textFieldCollection" destination="uEq-Nh-kIM" collectionClass="NSMutableArray" id="g6d-Y8-4OS"/>
+                        <outletCollection property="textFieldCollection" destination="uEq-Nh-kIM" collectionClass="NSMutableArray" id="gM1-2n-wV4"/>
+                        <outletCollection property="textFieldCollection" destination="MpV-1h-sBD" collectionClass="NSMutableArray" id="0zs-1D-kc6"/>
+                        <outletCollection property="textFieldCollection" destination="Ejl-RC-3mI" collectionClass="NSMutableArray" id="TzQ-xx-RiV"/>
+                        <outletCollection property="textFieldCollection" destination="NmS-5t-bQ8" collectionClass="NSMutableArray" id="mUK-YS-nV8"/>
+                        <outletCollection property="textFieldCollection" destination="yor-B4-MIy" collectionClass="NSMutableArray" id="Kyk-Ek-H9b"/>
+                        <outletCollection property="textFieldCollection" destination="uEq-Nh-kIM" collectionClass="NSMutableArray" id="A03-mV-8ay"/>
+                        <outletCollection property="textFieldCollection" destination="MpV-1h-sBD" collectionClass="NSMutableArray" id="aYf-ye-1al"/>
+                        <outletCollection property="textFieldCollection" destination="Ejl-RC-3mI" collectionClass="NSMutableArray" id="V8B-gA-P8p"/>
+                        <outletCollection property="textFieldCollection" destination="NmS-5t-bQ8" collectionClass="NSMutableArray" id="ZBK-f4-X7V"/>
+                        <outletCollection property="textFieldCollection" destination="yor-B4-MIy" collectionClass="NSMutableArray" id="JRe-ou-5PH"/>
+                        <segue destination="LNX-7v-0sZ" kind="show" id="bdT-S6-dse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjg-Sj-tV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,9 +192,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Organization SignUp" id="nDi-ku-gdl"/>
-                    <connections>
-                        <segue destination="LkN-K6-cTT" kind="show" id="SC8-ng-cUo"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RbH-8I-dmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -156,7 +206,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PVW-Su-XTh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ven-10-0Jo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="srK-bJ-vR4" customClass="TextField" customModule="ACApps">
@@ -210,24 +260,30 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoT-eW-vVB">
-                                <rect key="frame" x="151" y="453" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Password Setup" id="1q7-fy-7Iz"/>
+                    <navigationItem key="navigationItem" title="Password Setup" id="1q7-fy-7Iz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="6V7-ow-h1Q">
+                            <connections>
+                                <action selector="doneButton:" destination="LkN-K6-cTT" id="8IT-iX-n7f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="label" destination="OoT-eW-vVB" id="sJB-17-92c"/>
-                        <segue destination="LNX-7v-0sZ" kind="show" identifier="mapViewSegue1" id="kGX-aM-Dmg"/>
+                        <outlet property="confirmPasswordTextField" destination="SwP-rL-6kE" id="Pf0-SQ-Wej"/>
+                        <outlet property="doneBarButtonItem" destination="6V7-ow-h1Q" id="Kp2-C3-epc"/>
+                        <outlet property="passwordSetupTextField" destination="xqu-xd-FKr" id="YcJ-cL-ZCq"/>
+                        <outlet property="passwordTextField" destination="xqu-xd-FKr" id="eH9-ZS-TgA"/>
+                        <outlet property="usernameTextField" destination="srK-bJ-vR4" id="V8G-XY-Y7V"/>
+                        <outletCollection property="textFieldCollection" destination="srK-bJ-vR4" collectionClass="NSMutableArray" id="yQy-1J-H3X"/>
+                        <outletCollection property="textFieldCollection" destination="xqu-xd-FKr" collectionClass="NSMutableArray" id="mQ9-GV-gGp"/>
+                        <outletCollection property="textFieldCollection" destination="SwP-rL-6kE" collectionClass="NSMutableArray" id="EFT-gh-XmS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ro-dQ-i4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4618.5" y="1089.5"/>
+            <point key="canvasLocation" x="4824" y="2257"/>
         </scene>
         <!--Map View-->
         <scene sceneID="Qoc-h1-8se">
@@ -261,10 +317,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="storyboardMapView" destination="8a4-d5-og9" id="nu3-NN-DfT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLg-WB-z8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5322.5" y="1089.5"/>
+            <point key="canvasLocation" x="4745.5" y="1089.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mz4-8j-Fek">
@@ -294,7 +353,6 @@
         <image name="CarePackage-Logo_SplashsScreen" width="3000" height="3000"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c7Q-pq-70l"/>
-        <segue reference="kGX-aM-Dmg"/>
+        <segue reference="bdT-S6-dse"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,74 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		811287C81C8FE91D00F7C487 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811287C71C8FE91D00F7C487 /* UIKit.framework */; };
+		813F31261CB5985C00BC2033 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811287C71C8FE91D00F7C487 /* UIKit.framework */; };
+		813F31271CB5986100BC2033 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A77D061CB189C100A37C96 /* CoreData.framework */; };
+		813F31281CB5986600BC2033 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BD51711C8136D900FA7FB3 /* MapKit.framework */; };
+		813F312A1CB5AC7B00BC2033 /* userSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813F31291CB5AC7B00BC2033 /* userSignupViewController.swift */; };
+		813F312B1CB5B14000BC2033 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A77D5C1CB369FA00A37C96 /* CryptoSwift.framework */; };
+		813F312C1CB5B14000BC2033 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81A77D5C1CB369FA00A37C96 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8142FE071C83D42E0068BB6E /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8142FE061C83D42E0068BB6E /* XMLParser.swift */; };
 		8159EA4A1C8E8A79007599AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8159EA491C8E8A79007599AE /* Main.storyboard */; };
 		8159EA4C1C8E8F0A007599AE /* LocationOrCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */; };
 		8159EA6A1C8E93FD007599AE /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8159EA691C8E93FD007599AE /* AlertView.swift */; };
 		815E8F671CB184C000833822 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E8F661CB184C000833822 /* extensions.swift */; };
-		815E8F7E1CB185B900833822 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 815E8F751CB185AD00833822 /* CryptoSwift.framework */; };
-		815E8F7F1CB185B900833822 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 815E8F751CB185AD00833822 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		816C79E11C8D090200C1D8EC /* DataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79E01C8D090200C1D8EC /* DataConnection.swift */; };
 		816C79EA1C8D0CF500C1D8EC /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79E91C8D0CF500C1D8EC /* TextField.swift */; };
 		816C79EC1C8D0D3F00C1D8EC /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79EB1C8D0D3F00C1D8EC /* TextFieldEffects.swift */; };
-		816C79EF1C8D0DE600C1D8EC /* userSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C79EE1C8D0DE600C1D8EC /* userSignupViewController.swift */; };
 		816C7A1E1C8D443E00C1D8EC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C7A1D1C8D443E00C1D8EC /* Launch Screen.storyboard */; };
-		81A77D011CB1887300A37C96 /* ACAppsCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81A77CFF1CB1887300A37C96 /* ACAppsCoreData.xcdatamodeld */; };
-		81A77D041CB188E900A37C96 /* UserInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A77D021CB188E900A37C96 /* UserInfo+CoreDataProperties.swift */; };
-		81A77D051CB188E900A37C96 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A77D031CB188E900A37C96 /* UserInfo.swift */; };
-		81A77D071CB189C100A37C96 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A77D061CB189C100A37C96 /* CoreData.framework */; };
+		81A77D091CB32E6A00A37C96 /* UserInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A77D081CB32E6A00A37C96 /* UserInfo+CoreDataProperties.swift */; };
+		81A77D6B1CB36FB000A37C96 /* UserInfo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81A77D691CB36FB000A37C96 /* UserInfo.xcdatamodeld */; };
+		81A77D6F1CB3702B00A37C96 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A77D6E1CB3702B00A37C96 /* UserInfo.swift */; };
 		81BD51321C812D5100FA7FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51311C812D5100FA7FB3 /* AppDelegate.swift */; };
 		81BD51341C812D5100FA7FB3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51331C812D5100FA7FB3 /* MapView.swift */; };
 		81BD51391C812D5100FA7FB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81BD51381C812D5100FA7FB3 /* Assets.xcassets */; };
 		81BD51471C812D5100FA7FB3 /* ACAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51461C812D5100FA7FB3 /* ACAppsTests.swift */; };
 		81BD51521C812D5100FA7FB3 /* ACAppsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD51511C812D5100FA7FB3 /* ACAppsUITests.swift */; };
-		81BD51721C8136D900FA7FB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BD51711C8136D900FA7FB3 /* MapKit.framework */; };
+		81D386431CB6F8D700579547 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D386421CB6F8D700579547 /* Firebase.framework */; };
+		81D3864B1CB7446C00579547 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D3864A1CB7446C00579547 /* ShareData.swift */; };
 		81E565C81C948AAD00477A75 /* passwordSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */; };
+		CF8510AFBA269D4F98DB7AF3 /* Pods_ACApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C2D98E69D3C34F889A7143 /* Pods_ACApps.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		815E8F741CB185AD00833822 /* PBXContainerItemProxy */ = {
+		813F312D1CB5B14000BC2033 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
+			containerPortal = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 754BE45419693E190098E6F3;
+			remoteInfo = "CryptoSwift iOS";
+		};
+		81A77D5B1CB369FA00A37C96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 754BE45519693E190098E6F3;
 			remoteInfo = "CryptoSwift iOS";
 		};
-		815E8F761CB185AD00833822 /* PBXContainerItemProxy */ = {
+		81A77D5D1CB369FA00A37C96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
+			containerPortal = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5596BDBB1BC8F220007E38D5;
 			remoteInfo = "CryptoSwift watchOS";
 		};
-		815E8F781CB185AD00833822 /* PBXContainerItemProxy */ = {
+		81A77D5F1CB369FA00A37C96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
+			containerPortal = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 75DF77721BC8EB59006E9520;
 			remoteInfo = "CryptoSwift OSX";
 		};
-		815E8F7A1CB185AD00833822 /* PBXContainerItemProxy */ = {
+		81A77D611CB369FA00A37C96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
+			containerPortal = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 75D614BF1BD844F2001358B2;
 			remoteInfo = "CryptoSwift tvOS";
 		};
-		815E8F7C1CB185AD00833822 /* PBXContainerItemProxy */ = {
+		81A77D631CB369FA00A37C96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
+			containerPortal = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 754BE46019693E190098E6F3;
 			remoteInfo = CryptoSwiftTests;
-		};
-		815E8F801CB185B900833822 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 754BE45419693E190098E6F3;
-			remoteInfo = "CryptoSwift iOS";
 		};
 		81BD51431C812D5100FA7FB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -93,13 +96,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		816C7A151C8D2EDB00C1D8EC /* Embed Frameworks */ = {
+		813F312F1CB5B14000BC2033 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				815E8F7F1CB185B900833822 /* CryptoSwift.framework in Embed Frameworks */,
+				813F312C1CB5B14000BC2033 /* CryptoSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,23 +110,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		51C2D98E69D3C34F889A7143 /* Pods_ACApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ACApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64F1B54AB7096717B3EBE982 /* Pods-ACApps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACApps.release.xcconfig"; path = "Pods/Target Support Files/Pods-ACApps/Pods-ACApps.release.xcconfig"; sourceTree = "<group>"; };
 		811287C71C8FE91D00F7C487 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		813F31291CB5AC7B00BC2033 /* userSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userSignupViewController.swift; sourceTree = "<group>"; };
 		8142FE061C83D42E0068BB6E /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		8159EA491C8E8A79007599AE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOrCustomerViewController.swift; sourceTree = "<group>"; };
 		8159EA691C8E93FD007599AE /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		815E8F661CB184C000833822 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
-		815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "../CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
 		816C79E01C8D090200C1D8EC /* DataConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConnection.swift; sourceTree = "<group>"; };
 		816C79E91C8D0CF500C1D8EC /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		816C79EB1C8D0D3F00C1D8EC /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
-		816C79EE1C8D0DE600C1D8EC /* userSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userSignupViewController.swift; sourceTree = "<group>"; };
 		816C79F41C8D0F9B00C1D8EC /* TextFieldEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TextFieldEffects.h; path = "../../TextFieldEffects-master/TextFieldEffects/TextFieldEffects/TextFieldEffects.h"; sourceTree = "<group>"; };
 		816C7A1D1C8D443E00C1D8EC /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		81A77D001CB1887300A37C96 /* ACAppsCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ACAppsCoreData.xcdatamodel; sourceTree = "<group>"; };
-		81A77D021CB188E900A37C96 /* UserInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		81A77D031CB188E900A37C96 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		81A77D061CB189C100A37C96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		81A77D081CB32E6A00A37C96 /* UserInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "../CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
+		81A77D6A1CB36FB000A37C96 /* UserInfo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInfo.xcdatamodel; sourceTree = "<group>"; };
+		81A77D6E1CB3702B00A37C96 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		81BD512E1C812D5100FA7FB3 /* ACApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BD51311C812D5100FA7FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81BD51331C812D5100FA7FB3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -136,8 +141,11 @@
 		81BD51511C812D5100FA7FB3 /* ACAppsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAppsUITests.swift; sourceTree = "<group>"; };
 		81BD51531C812D5100FA7FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BD51711C8136D900FA7FB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		81D386421CB6F8D700579547 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = "Pods/../build/Debug-iphoneos/Firebase.framework"; sourceTree = "<group>"; };
+		81D3864A1CB7446C00579547 /* ShareData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
 		81D5C0081C824AAF00C065AA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = passwordSetupViewController.swift; sourceTree = "<group>"; };
+		92AC1E658A47E304ABB2C1D8 /* Pods-ACApps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ACApps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ACApps/Pods-ACApps.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +153,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81A77D071CB189C100A37C96 /* CoreData.framework in Frameworks */,
-				815E8F7E1CB185B900833822 /* CryptoSwift.framework in Frameworks */,
-				811287C81C8FE91D00F7C487 /* UIKit.framework in Frameworks */,
-				81BD51721C8136D900FA7FB3 /* MapKit.framework in Frameworks */,
+				81D386431CB6F8D700579547 /* Firebase.framework in Frameworks */,
+				813F31281CB5986600BC2033 /* MapKit.framework in Frameworks */,
+				813F31271CB5986100BC2033 /* CoreData.framework in Frameworks */,
+				813F31261CB5985C00BC2033 /* UIKit.framework in Frameworks */,
+				813F312B1CB5B14000BC2033 /* CryptoSwift.framework in Frameworks */,
+				CF8510AFBA269D4F98DB7AF3 /* Pods_ACApps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,24 +179,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F7F83206E98AA1EEEF563AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92AC1E658A47E304ABB2C1D8 /* Pods-ACApps.debug.xcconfig */,
+				64F1B54AB7096717B3EBE982 /* Pods-ACApps.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8159EA4D1C8E9349007599AE /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
 				8159EA691C8E93FD007599AE /* AlertView.swift */,
 			);
 			name = AlertView;
-			sourceTree = "<group>";
-		};
-		815E8F6D1CB185AD00833822 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				815E8F751CB185AD00833822 /* CryptoSwift.framework */,
-				815E8F771CB185AD00833822 /* CryptoSwift.framework */,
-				815E8F791CB185AD00833822 /* CryptoSwift.framework */,
-				815E8F7B1CB185AD00833822 /* CryptoSwift.framework */,
-				815E8F7D1CB185AD00833822 /* CryptoSwiftTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		815E8F821CB1863B00833822 /* Storyboards */ = {
@@ -201,11 +208,9 @@
 		816C79DF1C8D08D400C1D8EC /* DataHandling */ = {
 			isa = PBXGroup;
 			children = (
-				81A77CFF1CB1887300A37C96 /* ACAppsCoreData.xcdatamodeld */,
-				81A77D021CB188E900A37C96 /* UserInfo+CoreDataProperties.swift */,
-				81A77D031CB188E900A37C96 /* UserInfo.swift */,
-				8142FE061C83D42E0068BB6E /* XMLParser.swift */,
-				816C79E01C8D090200C1D8EC /* DataConnection.swift */,
+				81D3864C1CB7447A00579547 /* LocalFileShare */,
+				81D386491CB7445E00579547 /* CoreData */,
+				81D386481CB7445600579547 /* Networking */,
 			);
 			name = DataHandling;
 			sourceTree = "<group>";
@@ -213,6 +218,10 @@
 		816C79E21C8D093200C1D8EC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */,
+				813F31291CB5AC7B00BC2033 /* userSignupViewController.swift */,
+				81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */,
+				81BD51331C812D5100FA7FB3 /* MapView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -236,16 +245,29 @@
 			name = TextFields;
 			sourceTree = "<group>";
 		};
+		81A77D541CB369F900A37C96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81A77D5C1CB369FA00A37C96 /* CryptoSwift.framework */,
+				81A77D5E1CB369FA00A37C96 /* CryptoSwift.framework */,
+				81A77D601CB369FA00A37C96 /* CryptoSwift.framework */,
+				81A77D621CB369FA00A37C96 /* CryptoSwift.framework */,
+				81A77D641CB369FA00A37C96 /* CryptoSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		81BD51251C812D5100FA7FB3 = {
 			isa = PBXGroup;
 			children = (
-				815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */,
+				81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */,
 				81BD51301C812D5100FA7FB3 /* ACApps */,
 				81BD51451C812D5100FA7FB3 /* ACAppsTests */,
 				81BD51501C812D5100FA7FB3 /* ACAppsUITests */,
 				81BD512F1C812D5100FA7FB3 /* Products */,
 				81BD51681C812EBA00FA7FB3 /* Extra */,
 				81BD51731C8136E100FA7FB3 /* Frameworks */,
+				3F7F83206E98AA1EEEF563AF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,14 +287,10 @@
 				81BD51311C812D5100FA7FB3 /* AppDelegate.swift */,
 				815E8F661CB184C000833822 /* extensions.swift */,
 				816C79E21C8D093200C1D8EC /* ViewControllers */,
-				8159EA4B1C8E8F0A007599AE /* LocationOrCustomerViewController.swift */,
-				816C79EE1C8D0DE600C1D8EC /* userSignupViewController.swift */,
-				81E565C71C948AAD00477A75 /* passwordSetupViewController.swift */,
-				81BD51331C812D5100FA7FB3 /* MapView.swift */,
 				815E8F821CB1863B00833822 /* Storyboards */,
-				81D5C0081C824AAF00C065AA /* MyPlayground.playground */,
 				816C79E61C8D09FB00C1D8EC /* UI */,
 				816C79DF1C8D08D400C1D8EC /* DataHandling */,
+				81D5C0081C824AAF00C065AA /* MyPlayground.playground */,
 			);
 			path = ACApps;
 			sourceTree = "<group>";
@@ -308,11 +326,40 @@
 		81BD51731C8136E100FA7FB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81D386421CB6F8D700579547 /* Firebase.framework */,
 				81A77D061CB189C100A37C96 /* CoreData.framework */,
 				811287C71C8FE91D00F7C487 /* UIKit.framework */,
 				81BD51711C8136D900FA7FB3 /* MapKit.framework */,
+				51C2D98E69D3C34F889A7143 /* Pods_ACApps.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81D386481CB7445600579547 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8142FE061C83D42E0068BB6E /* XMLParser.swift */,
+				816C79E01C8D090200C1D8EC /* DataConnection.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		81D386491CB7445E00579547 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				81A77D691CB36FB000A37C96 /* UserInfo.xcdatamodeld */,
+				81A77D6E1CB3702B00A37C96 /* UserInfo.swift */,
+				81A77D081CB32E6A00A37C96 /* UserInfo+CoreDataProperties.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		81D3864C1CB7447A00579547 /* LocalFileShare */ = {
+			isa = PBXGroup;
+			children = (
+				81D3864A1CB7446C00579547 /* ShareData.swift */,
+			);
+			name = LocalFileShare;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,15 +369,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81BD51561C812D5100FA7FB3 /* Build configuration list for PBXNativeTarget "ACApps" */;
 			buildPhases = (
+				C0954D3A84A8F37A2F1AFA9C /* Check Pods Manifest.lock */,
 				81BD512A1C812D5100FA7FB3 /* Sources */,
 				81BD512B1C812D5100FA7FB3 /* Frameworks */,
 				81BD512C1C812D5100FA7FB3 /* Resources */,
-				816C7A151C8D2EDB00C1D8EC /* Embed Frameworks */,
+				813F312F1CB5B14000BC2033 /* Embed Frameworks */,
+				220C560B9DA4795E4B9EAB11 /* Embed Pods Frameworks */,
+				B48910B24036AD8EE153EFAD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				815E8F811CB185B900833822 /* PBXTargetDependency */,
+				813F312E1CB5B14000BC2033 /* PBXTargetDependency */,
 			);
 			name = ACApps;
 			productName = ACApps;
@@ -412,8 +462,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 815E8F6D1CB185AD00833822 /* Products */;
-					ProjectRef = 815E8F6C1CB185AD00833822 /* CryptoSwift.xcodeproj */;
+					ProductGroup = 81A77D541CB369F900A37C96 /* Products */;
+					ProjectRef = 81A77D531CB369F900A37C96 /* CryptoSwift.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -426,39 +476,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		815E8F751CB185AD00833822 /* CryptoSwift.framework */ = {
+		81A77D5C1CB369FA00A37C96 /* CryptoSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = CryptoSwift.framework;
-			remoteRef = 815E8F741CB185AD00833822 /* PBXContainerItemProxy */;
+			remoteRef = 81A77D5B1CB369FA00A37C96 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		815E8F771CB185AD00833822 /* CryptoSwift.framework */ = {
+		81A77D5E1CB369FA00A37C96 /* CryptoSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = CryptoSwift.framework;
-			remoteRef = 815E8F761CB185AD00833822 /* PBXContainerItemProxy */;
+			remoteRef = 81A77D5D1CB369FA00A37C96 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		815E8F791CB185AD00833822 /* CryptoSwift.framework */ = {
+		81A77D601CB369FA00A37C96 /* CryptoSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = CryptoSwift.framework;
-			remoteRef = 815E8F781CB185AD00833822 /* PBXContainerItemProxy */;
+			remoteRef = 81A77D5F1CB369FA00A37C96 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		815E8F7B1CB185AD00833822 /* CryptoSwift.framework */ = {
+		81A77D621CB369FA00A37C96 /* CryptoSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = CryptoSwift.framework;
-			remoteRef = 815E8F7A1CB185AD00833822 /* PBXContainerItemProxy */;
+			remoteRef = 81A77D611CB369FA00A37C96 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		815E8F7D1CB185AD00833822 /* CryptoSwiftTests.xctest */ = {
+		81A77D641CB369FA00A37C96 /* CryptoSwiftTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CryptoSwiftTests.xctest;
-			remoteRef = 815E8F7C1CB185AD00833822 /* PBXContainerItemProxy */;
+			remoteRef = 81A77D631CB369FA00A37C96 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -490,24 +540,73 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		220C560B9DA4795E4B9EAB11 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ACApps/Pods-ACApps-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B48910B24036AD8EE153EFAD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ACApps/Pods-ACApps-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0954D3A84A8F37A2F1AFA9C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		81BD512A1C812D5100FA7FB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8142FE071C83D42E0068BB6E /* XMLParser.swift in Sources */,
-				816C79EF1C8D0DE600C1D8EC /* userSignupViewController.swift in Sources */,
+				81A77D091CB32E6A00A37C96 /* UserInfo+CoreDataProperties.swift in Sources */,
 				8159EA6A1C8E93FD007599AE /* AlertView.swift in Sources */,
 				815E8F671CB184C000833822 /* extensions.swift in Sources */,
 				816C79E11C8D090200C1D8EC /* DataConnection.swift in Sources */,
 				816C79EC1C8D0D3F00C1D8EC /* TextFieldEffects.swift in Sources */,
-				81A77D011CB1887300A37C96 /* ACAppsCoreData.xcdatamodeld in Sources */,
-				81A77D041CB188E900A37C96 /* UserInfo+CoreDataProperties.swift in Sources */,
+				813F312A1CB5AC7B00BC2033 /* userSignupViewController.swift in Sources */,
+				81A77D6B1CB36FB000A37C96 /* UserInfo.xcdatamodeld in Sources */,
+				81D3864B1CB7446C00579547 /* ShareData.swift in Sources */,
 				81E565C81C948AAD00477A75 /* passwordSetupViewController.swift in Sources */,
 				8159EA4C1C8E8F0A007599AE /* LocationOrCustomerViewController.swift in Sources */,
 				81BD51341C812D5100FA7FB3 /* MapView.swift in Sources */,
 				816C79EA1C8D0CF500C1D8EC /* TextField.swift in Sources */,
-				81A77D051CB188E900A37C96 /* UserInfo.swift in Sources */,
+				81A77D6F1CB3702B00A37C96 /* UserInfo.swift in Sources */,
 				81BD51321C812D5100FA7FB3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,10 +630,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		815E8F811CB185B900833822 /* PBXTargetDependency */ = {
+		813F312E1CB5B14000BC2033 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "CryptoSwift iOS";
-			targetProxy = 815E8F801CB185B900833822 /* PBXContainerItemProxy */;
+			targetProxy = 813F312D1CB5B14000BC2033 /* PBXContainerItemProxy */;
 		};
 		81BD51441C812D5100FA7FB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -632,27 +731,39 @@
 		};
 		81BD51571C812D5100FA7FB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92AC1E658A47E304ABB2C1D8 /* Pods-ACApps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = ACApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brandon.Phan.ACApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		81BD51581C812D5100FA7FB3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64F1B54AB7096717B3EBE982 /* Pods-ACApps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = ACApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brandon.Phan.ACApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -746,13 +857,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		81A77CFF1CB1887300A37C96 /* ACAppsCoreData.xcdatamodeld */ = {
+		81A77D691CB36FB000A37C96 /* UserInfo.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				81A77D001CB1887300A37C96 /* ACAppsCoreData.xcdatamodel */,
+				81A77D6A1CB36FB000A37C96 /* UserInfo.xcdatamodel */,
 			);
-			currentVersion = 81A77D001CB1887300A37C96 /* ACAppsCoreData.xcdatamodel */;
-			path = ACAppsCoreData.xcdatamodeld;
+			currentVersion = 81A77D6A1CB36FB000A37C96 /* UserInfo.xcdatamodel */;
+			path = UserInfo.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
