@@ -20,19 +20,22 @@ class LocationOrCustomerViewController: UIViewController {
     
     let userInfo = UserInfo()
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var logoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Determine if it is a users first time opening the application
-        if NSUserDefaults.isFirstLaunch() {
-            //Is first launch
-            isFirstLaunch = true
-        } else {
-            //Not first launch
-            isFirstLaunch = true  /* <- Change this line <- */
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { () -> Void in
+            //Determine if it is a users first time opening the application
+            if NSUserDefaults.isFirstLaunch() {
+                //Is first launch
+                self.isFirstLaunch = true
+            } else {
+                //Not first launch
+                self.isFirstLaunch = true  /* <- Change this line <- */
+            }
         }
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -42,7 +45,8 @@ class LocationOrCustomerViewController: UIViewController {
             
             //Add blur effect
             let blurEffect = UIBlurEffect(style: .Dark)
-            let blurView = UIVisualEffectView(effect: blurEffect)
+            var blurView = UIVisualEffectView()
+            blurView = UIVisualEffectView(effect: blurEffect)
             blurView.frame = self.view.bounds
             UIView.animateWithDuration(0.2, animations: {
                 self.view.addSubview(blurView)
@@ -91,6 +95,7 @@ class LocationOrCustomerViewController: UIViewController {
     }
     func isCustomerOfService(Selector: SCLAlertView) {
         dispatch_async(dispatch_get_main_queue()) {
+            
             self.presentViewControllerUsingNavigationControllerNoReturn("UserSignUpViewController", animated: true, CompletionHandler: nil)
         }
     }
@@ -100,7 +105,6 @@ class LocationOrCustomerViewController: UIViewController {
         let VC = storyBoard.instantiateViewControllerWithIdentifier(VCID)
         let navigationController = UINavigationController(rootViewController: VC)
         self.presentViewController(navigationController, animated: animated, completion: CompletionHandler)
-
     }
 }
 
