@@ -35,6 +35,7 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             self.navigationItem.titleView = UIImageView(image: navigationBarImage)
         }
         
+        /*
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
             NSLog("Start parse")
             self.xmlParser.parse( { (success) -> Void in
@@ -43,7 +44,7 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                 }
             })
         }
-        
+        */
         NSLog("Finish")
     }
     
@@ -78,6 +79,7 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             }
             
             //Add School Pins
+            /*
             for school in self.xmlParser.SC_schoolNameArray {
                 
                 let longitude = String(self.xmlParser.SC_X_CoordinateArray.prefix(1))
@@ -90,6 +92,7 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                 self.storyboardMapView.addAnnotation(annotation)
                 print("Added pin")
             }
+            */
         }
     }
     

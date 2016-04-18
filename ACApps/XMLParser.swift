@@ -1,185 +1,170 @@
 //
-//  XMLParser.swift
+//  File.swift
 //  ACApps
 //
-//  Created by Brandon Phan on 2/28/16.
+//  Created by Brandon Phan on 4/14/16.
 //  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 
 import Foundation
-import MapKit
 
-class XMLParser: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
+class XMLParser: NSObject, NSXMLParserDelegate {
     
     var parser = NSXMLParser()
     var strXMLData = String()
-        
+    
     private var passName = false
     private var passData = false
     private var currentElement: String = ""
     private var currentParsedElement = String()
     
-    private var schoolSearch: Bool! = false
-    private var hospitalSearch: Bool! = false
-    private var finishParse = true
+    var schoolSearch: Bool!
+    var hospitalSearch: Bool!
+    var schoolDataArray: [schoolData]!
+
+    override init() {
+        super.init()
+        parserSetup()
+    }
+    func parserSetup() {
+        parser.delegate = self
+    }
     
-    //School Info
-    internal var SC_X_Coordinate = String()
-    internal var SC_Y_Coordinate = String()
-    internal var SC_schoolName = String()
-    internal var SC_address = String()
-    internal var SC_city = String()
-    internal var SC_state = String()
-    internal var SC_gradeLevel = String()
-    internal var SC_organization = String()
-    
-    internal var SC_X_CoordinateArray: [String] = []
-    internal var SC_Y_CoordinateArray: [String] = []
-    internal var SC_schoolNameArray: [String] = []
-    internal var SC_addressArray: [String] = []
-    internal var SC_cityArray: [String] = []
-    internal var SC_stateArray: [String] = []
-    internal var SC_gradeLevelArray: [String] = []
-    internal var SC_organizationArray: [String] = []
-    
-    //Hospital info
-    internal var H_Facillity = String()
-    internal var H_Alias = String()
-    internal var H_Address = String()
-    internal var H_City = String()
-    internal var H_State = String()
-    internal var H_Zip_Code = String()
-    internal var H_Status = String()
-    internal var H_Type = String()
-    internal var H_longitude = String()
-    internal var H_Latitude = String()
-    internal var H_country = String()
-    
-    internal var H_FacillityArray: [String] = []
-    internal var H_AliasArray: [String] = []
-    internal var H_AddressArray: [String] = []
-    internal var H_CityArray: [String] = []
-    internal var H_StateArray: [String] = []
-    internal var H_ZipCodeArray: [String] = []
-    internal var H_StatusArray: [String] = []
-    internal var H_TypeArray: [String] = []
-    internal var H_longitudeArray: [String] = []
-    internal var H_LatitudeArray: [String] = []
-    internal var H_CountryArray: [String] = []
-    
-    typealias CompletionHandler = (success: Bool) -> Void
-    
-    func parse(completionHandler: CompletionHandler) {
-        //Parse xML
+    struct schoolData {
+        var X_Coordinate, Y_Coordinate, schoolName, address, city, state, gradeLevel, organizationType: String?
         
-        let schoolURL = "https://data.acgov.org/api/views/wswg-zukg/rows.xml?accessType=DOWNLOAD"
-        let hospitalURL = "https://data.acgov.org/api/views/eje3-rj63/rows.xml?accessType=DOWNLOAD"
+        init(X_Coordinate: String) {
+            self.X_Coordinate = X_Coordinate
+        }
+        init(Y_Coordinate: String) {
+            self.Y_Coordinate = Y_Coordinate
+        }
+        init(schoolName: String) {
+            self.schoolName = schoolName
+        }
+        init(address: String) {
+            self.address = address
+        }
+        init(city: String) {
+            self.city = city
+        }
+        init(state: String) {
+            self.state = state
+        }
+        init(gradeLevel: String) {
+            self.gradeLevel = gradeLevel
+        }
+        init(organizationType: String) {
+            self.organizationType = organizationType
+        }
         
-        let URLArray = [schoolURL, hospitalURL]
+    }
+    
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                                  Parse School XML File
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class func schoolXMLParse() -> [schoolData] {
         
-        for URL in URLArray {
+        let xmlParser = XMLParser()
+        var schoolDataArray: [schoolData]!
+        
+        schoolDataArray = xmlParser.schoolDataArray
+        
+        //Parse XML
+        let finishSchoolParse: Bool!
+        typealias CompletionHandler = (success: Bool) -> Void
+        func parse(completionHandler: CompletionHandler) {
             
-            if URL == schoolURL {
-                schoolSearch = true
-            } else if URL == hospitalURL {
-                hospitalSearch = true
-            }
-            
-            self.parser = NSXMLParser(contentsOfURL: NSURL(string: URL)!)!
-            self.parser.delegate = self
-            
-            let success: Bool = self.parser.parse()
+            let schoolURL = "https://data.acgov.org/api/views/wswg-zukg/rows.xml?accessType=DOWNLOAD"
+                
+            xmlParser.parser = NSXMLParser(contentsOfURL: NSURL(string: schoolURL)!)!
+            let success: Bool = xmlParser.parser.parse()
             if success {
                 print("Parse success")
-                completionHandler(success: finishParse)
-            
+                completionHandler(success: finishSchoolParse)
+                
             } else {
                 print("Parse failure")
             }
         }
+
+        return schoolDataArray
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        self.currentElement = elementName
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                                  Parse Hospital XML File
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    class func hospitalXMLParse() -> [String] {
+        let xmlParser = XMLParser()
+        var hospitalDataArray: [String]!
         
-        if schoolSearch == true  {
-            if (elementName == "x" || elementName == "y" || elementName == "site" || elementName == "address" || elementName == "city" || elementName == "state" || elementName == "type" || elementName == "org") {
-                passName = true
-                passData = false
-                schoolSearch = true
-                hospitalSearch = false
-                
-            }
+        let finishHospitalParse: Bool!
+        typealias CompletionHandler = (success: Bool) -> Void
+        func parse(completionHandler: CompletionHandler) {
+            
         }
         
-        if hospitalSearch == true {
-            if (elementName == "facility" || elementName == "alias" || elementName == "address" || elementName == "city" || elementName == "state" || elementName == "zip_Code" || elementName == "status" || elementName == "type" || elementName == "longitude" || elementName == "latitude" || elementName == "country") {
-                passName = true
-                passData = false
-                hospitalSearch = true
-                schoolSearch = false
-            }
-        }
-
+        return hospitalDataArray
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         dispatch_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
             self.strXMLData = self.strXMLData + "\n" + string
             
+            
             if (self.passName && self.schoolSearch == true) {
                 
                 if self.currentElement == "x" {
-                    self.SC_X_Coordinate = self.currentParsedElement + string
-                    self.SC_X_Coordinate.removeAtIndex(self.SC_X_Coordinate.startIndex)
-                    self.SC_X_CoordinateArray.append(self.SC_X_Coordinate)
-                    print(self.SC_X_Coordinate)
+                    let X_Coordinate = schoolData(X_Coordinate: self.currentParsedElement + string)
+                    self.schoolDataArray.append(X_Coordinate)
+                    print(X_Coordinate)
                 }
                 
                 if self.currentElement == "y" {
-                    self.SC_Y_Coordinate = self.currentParsedElement + string
-                    self.SC_Y_Coordinate.removeAtIndex(self.SC_Y_Coordinate.startIndex)
-                    self.SC_Y_CoordinateArray.append(self.SC_Y_Coordinate)
-                    print(self.SC_Y_Coordinate)
+                    let Y_Coordiante = schoolData(Y_Coordinate: self.currentParsedElement + string)
+                    self.schoolDataArray.append(Y_Coordiante)
+                    print(Y_Coordiante)
                 }
                 
                 if self.currentElement == "site" {
-                    self.SC_schoolName = self.currentParsedElement + string
-                    self.SC_schoolNameArray.append(self.SC_schoolName)
-                    print(self.SC_schoolName)
+                    let schoolName = schoolData(schoolName: self.currentParsedElement + string)
+                    self.schoolDataArray.append(schoolName)
+                    print(schoolName)
                 }
                 
                 if self.currentElement == "address" {
-                    self.SC_address = self.currentParsedElement + string
-                    self.SC_addressArray.append(self.SC_address)
-                    print(self.SC_address)
+                    let schoolAddress = schoolData(address: self.currentParsedElement + string)
+                    self.schoolDataArray.append(schoolAddress)
+                    print(schoolAddress)
                 }
                 
                 if self.currentElement == "city" {
-                    self.SC_city = self.currentParsedElement + string
-                    self.SC_cityArray.append(self.SC_city)
-                    print(self.SC_city)
+                    let city = schoolData(city: self.currentParsedElement + string)
+                    self.schoolDataArray.append(city)
+                    print(city)
                 }
                 
                 if self.currentElement == "state" {
-                    self.SC_state = self.currentElement + string
-                    self.SC_stateArray.append(self.SC_state)
-                    print(self.SC_state)
+                    let state = schoolData(state: self.currentParsedElement + string)
+                    self.schoolDataArray.append(state)
+                    print(state)
                 }
                 
                 if self.currentElement == "type" {
-                    self.SC_gradeLevel = self.currentParsedElement + string
-                    self.SC_gradeLevelArray.append(self.SC_gradeLevel)
-                    print(self.SC_gradeLevel)
+                    let gradeLevel = schoolData(gradeLevel: self.currentParsedElement + string)
+                    self.schoolDataArray.append(gradeLevel)
+                    print(gradeLevel)
+
                 }
                 
                 if self.currentElement == "org" {
-                    self.SC_organization = self.currentParsedElement + string
-                    self.SC_organizationArray.append(self.SC_organization)
-                    print(self.SC_organization)
+                    let organizationType = schoolData(organizationType: self.currentParsedElement + string)
+                    self.schoolDataArray.append(organizationType)
+                    print(organizationType)
                 }
             }
             
+            /*
             if (self.passName && self.hospitalSearch == true) {
                 
                 if self.currentElement == "facility" {
@@ -247,6 +232,7 @@ class XMLParser: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
                     print(self.H_country)
                 }
             }
+            */
         }
     }
     
@@ -269,34 +255,14 @@ class XMLParser: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
             parser.finalize()
             parser.abortParsing()
-            
-            //Remove school arrays
-            self.SC_X_CoordinateArray.removeAll()
-            self.SC_Y_CoordinateArray.removeAll()
-            self.SC_addressArray.removeAll()
-            self.SC_cityArray.removeAll()
-            self.SC_stateArray.removeAll()
-            self.SC_gradeLevelArray.removeAll()
-            self.SC_organizationArray.removeAll()
-            
-            //Remove hospital arrays
-            self.H_FacillityArray.removeAll()
-            self.H_AliasArray.removeAll()
-            self.H_AddressArray.removeAll()
-            self.H_CityArray.removeAll()
-            self.H_StateArray.removeAll()
-            self.H_ZipCodeArray.removeAll()
-            self.H_StatusArray.removeAll()
-            self.H_TypeArray.removeAll()
-            self.H_longitudeArray.removeAll()
-            self.H_LatitudeArray.removeAll()
-            self.H_CountryArray.removeAll()
         }
     }
     
     func parserDidEndDocument(parser: NSXMLParser) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
-//            parser.finalize()
+            //            parser.finalize()
         }
     }
 }
+
+
