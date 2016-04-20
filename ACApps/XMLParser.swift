@@ -18,17 +18,9 @@ class XMLParser: NSObject, NSXMLParserDelegate {
     private var currentElement: String = ""
     private var currentParsedElement = String()
     
-    var schoolSearch: Bool!
-    var hospitalSearch: Bool!
+    var schoolSearch = Bool()
+    var hospitalSearch = Bool()
     var schoolDataArray: [schoolData]!
-
-    override init() {
-        super.init()
-        parserSetup()
-    }
-    func parserSetup() {
-        parser.delegate = self
-    }
     
     struct schoolData {
         var X_Coordinate, Y_Coordinate, schoolName, address, city, state, gradeLevel, organizationType: String?
@@ -57,55 +49,49 @@ class XMLParser: NSObject, NSXMLParserDelegate {
         init(organizationType: String) {
             self.organizationType = organizationType
         }
-        
     }
     
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                                  Parse School XML File
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
-    class func schoolXMLParse() -> [schoolData] {
+
+    //Parse XML
+    let finishXMLParse = Bool()
+    typealias CompletionHandler = (success: Bool) -> Void
+    func parse(completionHandler: CompletionHandler) {
         
-        let xmlParser = XMLParser()
-        var schoolDataArray: [schoolData]!
+        let schoolURL = "https://data.acgov.org/api/views/wswg-zukg/rows.xml?accessType=DOWNLOAD"
+        let hospitalURL = "https://data.acgov.org/api/views/eje3-rj63/rows.xml?accessType=DOWNLOAD"
         
-        schoolDataArray = xmlParser.schoolDataArray
+        let URLArray = [schoolURL, hospitalURL]
         
-        //Parse XML
-        let finishSchoolParse: Bool!
-        typealias CompletionHandler = (success: Bool) -> Void
-        func parse(completionHandler: CompletionHandler) {
+        for URL in URLArray {
             
-            let schoolURL = "https://data.acgov.org/api/views/wswg-zukg/rows.xml?accessType=DOWNLOAD"
-                
-            xmlParser.parser = NSXMLParser(contentsOfURL: NSURL(string: schoolURL)!)!
-            let success: Bool = xmlParser.parser.parse()
+            if URL == schoolURL {
+                schoolSearch = true
+            } else if URL == hospitalURL {
+                hospitalSearch = true
+            }
+            
+            self.parser = NSXMLParser(contentsOfURL: NSURL(string: URL)!)!
+            parser.delegate = self
+
+            let success: Bool = self.parser.parse()
             if success {
                 print("Parse success")
-                completionHandler(success: finishSchoolParse)
+                completionHandler(success: finishXMLParse)
                 
             } else {
                 print("Parse failure")
             }
         }
-
-        return schoolDataArray
     }
+
+    
     
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                                  Parse Hospital XML File
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
-    class func hospitalXMLParse() -> [String] {
-        let xmlParser = XMLParser()
-        var hospitalDataArray: [String]!
-        
-        let finishHospitalParse: Bool!
-        typealias CompletionHandler = (success: Bool) -> Void
-        func parse(completionHandler: CompletionHandler) {
-            
-        }
-        
-        return hospitalDataArray
-    }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         dispatch_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in

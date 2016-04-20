@@ -9,7 +9,7 @@
 import Foundation
 
 class ShareData {
-    class var SharedInstance: ShareData{
+    class var SharedInstance: ShareData {
         
         struct Static {
             static var instance: ShareData?

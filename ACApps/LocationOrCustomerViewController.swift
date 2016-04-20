@@ -2,39 +2,32 @@
 //  LocationOrCustomerViewController.swift
 //  ACApps
 //
-//  Created by Brandon Phan on 3/7/16.
+//  Created by Brandon Phan on 4/18/16.
 //  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 
 import Foundation
-import CryptoSwift
 import UIKit
 
-class LocationOrCustomerViewController: UIViewController {
-    
-    let alertView = SCLAlertView()
-    let userSignUpViewController = userSignupViewController()
+class LocationOrCustomerViewController1: UIViewController {
+
+    let questionareAlertView = SCLAlertView()
+    let UserSignupViewController = userSignupViewController()
     let appDelegate = AppDelegate()
     
     internal var isFirstLaunch = Bool()
-    
-    let userInfo = UserInfo()
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var navigationBar: UINavigationItem!
-    @IBOutlet weak var logoImageView: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { () -> Void in
-            //Determine if it is a users first time opening the application
+            //Determine if it is a user's first time launching the application
             if NSUserDefaults.isFirstLaunch() {
-                //Is first launch
+                //User's first time launching the application
                 self.isFirstLaunch = true
             } else {
-                //Not first launch
-                self.isFirstLaunch = true  /* <- Change this line <- */
+                //Not user's first time launching the application
+                self.isFirstLaunch = false
             }
         }
         
@@ -43,70 +36,36 @@ class LocationOrCustomerViewController: UIViewController {
             //Hide UINavigationBar
             self.navigationController?.setNavigationBarHidden(true, animated: false)
             
-            //Add blur effect
+            //Add a blur effect
             let blurEffect = UIBlurEffect(style: .Dark)
-            var blurView = UIVisualEffectView()
-            blurView = UIVisualEffectView(effect: blurEffect)
-            blurView.frame = self.view.bounds
-            UIView.animateWithDuration(0.2, animations: {
+            let blurView = UIVisualEffectView(effect: blurEffect)
+            UIView.animateWithDuration(1.0, animations: {
                 self.view.addSubview(blurView)
             })
             
-            if self.isFirstLaunch == true {
+            if (self.isFirstLaunch) {
                 //Is first launch
-                self.alertView.addButton("OK", target: self, selector: #selector(LocationOrCustomerViewController.OKButtonPressed(_:)))
-                self.alertView.showInfo("Info", subTitle: "Before you begin, we have to ask you a question.")
-                print("First launch")
+                //self.questionareAlertView.addButton("Okay", target: self, selector: <#T##Selector#>)
+                self.questionareAlertView.showInfo("?", subTitle: "Before we begin, we have to ask you a question")
+                print("FirstLaunch")
             } else {
-                //Not first launch, Add the login view because it is not the first launch
-            
+                //Not user's first time launching the application, will display the login view
                 if self.appDelegate.shouldDisplayLogin == true {
-                    print("Wil display map view")
+                    self.presentViewController(MapView(), animated: true, completion: nil)
                 } else if self.appDelegate.shouldDisplayLogin == false {
-                    let loginAlertView = SCLAlertView()
-                    loginAlertView.addTextField("Username")
-                    loginAlertView.addTextField("Password")
-                    loginAlertView.addButton("Login", action: {
-                        print("Next view")
-                    })
-                    loginAlertView.showSuccess("Login", subTitle: "")
+                    let loginView = UIView()
+                    var emailTextField = UITextField()
+                    var passwordTextField = UITextField()
+                    
+                    loginView.frame = CGRectMake(self.view.bounds.width/2, self.view.bounds.height/2, 150, 300)
+                    self.view.addSubview(loginView)
                 }
             }
-        }
-    }
-    
-    //Action when OKButton is pressed on first alert view
-    func OKButtonPressed(sender: SCLAlertView) {
-        dispatch_async(dispatch_get_main_queue()) {
-            //Set up second alert view and show it
-            let alertView1 = SCLAlertView()
-            alertView1.addButton("Customer of service", target: self, selector: #selector(LocationOrCustomerViewController.isCustomerOfService(_:)))
-            alertView1.addButton("Drop off location", target:self, selector: #selector(LocationOrCustomerViewController.isDropOffLocation(_:)))
-            alertView1.showEdit("Info", subTitle: "Select who you are")
-            self.alertView.hideView()
-        }
-    }
-    
-    //Actions for second alert view
-    func isDropOffLocation(sender: SCLAlertView) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.presentViewControllerUsingNavigationControllerNoReturn("locationSignupViewController", animated: true, CompletionHandler: nil)
-        }
-    }
-    func isCustomerOfService(Selector: SCLAlertView) {
-        dispatch_async(dispatch_get_main_queue()) {
             
-            self.presentViewControllerUsingNavigationControllerNoReturn("UserSignUpViewController", animated: true, CompletionHandler: nil)
         }
+        
+        
     }
- 
-    func presentViewControllerUsingNavigationControllerNoReturn(VCID: String, animated: Bool, CompletionHandler: (() -> Void)?) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyBoard.instantiateViewControllerWithIdentifier(VCID)
-        let navigationController = UINavigationController(rootViewController: VC)
-        self.presentViewController(navigationController, animated: animated, completion: CompletionHandler)
-    }
+    
+    
 }
-
-
-
