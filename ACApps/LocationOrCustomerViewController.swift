@@ -11,18 +11,19 @@ import UIKit
 import Spring
 import Firebase
 
-class LocationOrCustomerViewController: UIViewController {
+class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
 
     let questionareAlertView = SCLAlertView()
     let UserSignupViewController = userSignupViewController()
     let appDelegate = AppDelegate()
     let loginView = UIView()
+    let loginViewErrorLabel = UILabel()
     
-    var userEmail = String()
-    var userPassword = String()
-    var textfieldCollection = [UITextField]()
-    var canLogin = false
+    var emailTextField = TextField()
+    var passwordTextField = TextField()
+    var textfieldCollection = [TextField]()
     var buttonLogin = UIButton()
+    let loginButtonColor = UIColor(hex: "66BB6A")
     
     internal var isFirstLaunch = Bool()
 
@@ -30,39 +31,12 @@ class LocationOrCustomerViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var logoImageView: UIImageView!
     
-    let animations: [Spring.AnimationPreset] = [
-        .Shake,
-        .Pop,
-        .Morph,
-        .Squeeze,
-        .Wobble,
-        .Swing,
-        .FlipX,
-        .FlipY,
-        .Fall,
-        .SqueezeLeft,
-        .SqueezeRight,
-        .SqueezeDown,
-        .SqueezeUp,
-        .SlideLeft,
-        .SlideRight,
-        .SlideDown,
-        .SlideUp,
-        .FadeIn,
-        .FadeOut,
-        .FadeInLeft,
-        .FadeInRight,
-        .FadeInDown,
-        .FadeInUp,
-        .ZoomIn,
-        .ZoomOut,
-        .Flash
-    ]
+    //MARK: Setup The View
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Declare if it is a user's first time launching the application
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { () -> Void in
-            //Determine if it is a user's first time launching the application
             if NSUserDefaults.isFirstLaunch() {
                 //User's first time launching the application
                 self.isFirstLaunch = true
@@ -85,7 +59,7 @@ class LocationOrCustomerViewController: UIViewController {
                 self.view.addSubview(blurView)
             })
             
-            if (self.isFirstLaunch) {
+            if self.isFirstLaunch == true {
                 //Is first launch
                 //self.questionareAlertView.addButton("Okay", target: self, selector: <#T##Selector#>)
                 self.questionareAlertView.showInfo("?", subTitle: "Before we begin, we have to ask you a question")
@@ -94,113 +68,231 @@ class LocationOrCustomerViewController: UIViewController {
                 //Not user's first time launching the application, will display the login view
                 
                 
-                if self.appDelegate.shouldDisplayLogin == true {
+                if self.appDelegate.shouldDisplayLogin == true { /* Bypass login view, system will login, display main view */
                     self.presentViewController(MapView(), animated: true, completion: nil)
-                } else if self.appDelegate.shouldDisplayLogin == false {
+                } else if self.appDelegate.shouldDisplayLogin == false {    /* The view should display the login view*/
+                    //MARK: Login view setup
+                    //Create/setup UI objects
+                    self.emailTextField = TextField(frame: CGRectMake(self.loginView.frame.size.width + 40, self.loginView.frame.size.height + 100, 230, 40))
+                    self.passwordTextField = TextField(frame: CGRectMake(self.emailTextField.frame.size.width - 190, self.emailTextField.frame.size.height + 110, 230, 40))
+                    let loginLabel = UILabel(frame: CGRectMake(self.emailTextField.frame.size.width - 100, self.emailTextField.frame.size.height - 20, 240, 40))
+                    let loginButton = UIButton(frame: CGRectMake(self.passwordTextField.frame.size.width - 120, self.passwordTextField.frame.size.height + 168, 100, 30))
+                    let createAccountButton = UIButton(frame: CGRectMake(self.passwordTextField.frame.size.width - 175, loginButton.frame.size.height + 375, 200, 20))
                     
-                    let emailTextField = UITextField(frame: CGRectMake(self.loginView.frame.size.width + 40, self.loginView.frame.size.height + 100, 230, 40))
-                    let passwordTextField = UITextField(frame: CGRectMake(emailTextField.frame.size.width - 190, emailTextField.frame.size.height + 110, 230, 40))
-                    let loginLabel = UILabel(frame: CGRectMake(emailTextField.frame.size.width - 100, emailTextField.frame.size.height - 20, 240, 40))
-                    let loginButton = UIButton(frame: CGRectMake(passwordTextField.frame.size.width - 135, passwordTextField.frame.size.height + 168, 100, 30))
-                    let createAccountButton = UIButton(frame: CGRectMake(passwordTextField.frame.size.width - 175, loginButton.frame.size.height + 375, 200, 20))
-                    
+                    //Setup the loginView
                     self.loginView.layer.cornerRadius = 20
                     self.loginView.frame = CGRectMake(self.view.bounds.size.width/2 - 155, self.view.bounds.size.height/2 - 220, self.view.frame.size.width/1.2, self.view.frame.size.height/1.55)
                     self.loginView.backgroundColor = UIColor.whiteColor()
                     
-                    self.textfieldCollection.append(emailTextField)
-                    self.textfieldCollection.append(passwordTextField)
+                    //Setup the loginViewErrorLabel
+                    self.loginViewErrorLabel.frame = CGRectMake(loginButton.frame.size.width + 40, loginButton.frame.size.height + 220, self.loginView.frame.size.width / 1.2, 20)
+                    self.loginViewErrorLabel.textColor = UIColor(hex: "6A7989")
+                    self.loginViewErrorLabel.font = UIFont(name: "Avenir Next", size: 15)
                     
+                    //Add the textFields to textFieldColection array
+                    self.textfieldCollection.append(self.emailTextField)
+                    self.textfieldCollection.append(self.passwordTextField)
+                    
+                    //setup the login label
                     loginLabel.text = "Login"
-                    loginLabel.textColor = UIColor.blackColor()
+                    loginLabel.textColor = UIColor(hex: "6A7989")
                     loginLabel.font = loginLabel.font.fontWithSize(25)
                     
-                    emailTextField.borderStyle = .RoundedRect
-                    emailTextField.placeholder = "User Name"
+                    //Setup emailTextField with required settings
+                    self.emailTextField.delegate = self
+                    self.emailTextField.animateViewsForTextDisplay()
+                    self.emailTextField.placeholder = "User Name"
+                    self.emailTextField.clearButtonMode = .WhileEditing
+                    self.emailTextField.keyboardType = .EmailAddress
+                    self.emailTextField.autocorrectionType = .No
+                    self.emailTextField.autocapitalizationType = .None
+                    self.emailTextField.returnKeyType = .Next
+                    self.emailTextField.borderStyle = .Bezel
+                    self.emailTextField.font = UIFont(name: "Avenir Next", size: 18)
+                    self.emailTextField.borderInactiveColor = UIColor.blackColor()
+                    self.emailTextField.borderActiveColor = UIColor(hue: 238, saturation: 42, brightness: 42, alpha: 1)
+                    self.emailTextField.placeholderColor = UIColor(hex: "6A7989")
+                    self.emailTextField.textColor = UIColor(hex: "6A7989")
                     
-                    passwordTextField.borderStyle = .RoundedRect
-                    passwordTextField.placeholder = "Password"
+                    //Setup passwordTextField with required settings
+                    self.emailTextField.delegate = self
+                    self.passwordTextField.placeholder = "Password"
+                    self.passwordTextField.clearButtonMode = .WhileEditing
+                    self.passwordTextField.autocorrectionType = .No
+                    self.passwordTextField.autocapitalizationType = .None
+                    self.passwordTextField.secureTextEntry = true
+                    self.passwordTextField.returnKeyType = .Done
+                    self.passwordTextField.borderStyle = .None
+                    self.passwordTextField.font = UIFont(name: "Avenir Next", size: 18)
+                    self.passwordTextField.borderInactiveColor = UIColor.blackColor()
+                    self.passwordTextField.borderActiveColor = UIColor(hue: 238, saturation: 42, brightness: 42, alpha: 1)
+                    self.passwordTextField.placeholderColor = UIColor(hex: "6A7989")
+                    self.passwordTextField.textColor = UIColor(hex: "6A7989")
 
+                    //Setup the login button
                     loginButton.setTitle("Login", forState: .Normal)
-                    loginButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-                    loginButton.setTitleColor(UIColor.blueColor().colorWithAlphaComponent(0.9), forState: .Highlighted)
+                    loginButton.setTitleColor(self.loginButtonColor, forState: .Normal)
+                    loginButton.setTitleColor(self.loginButtonColor.colorWithAlphaComponent(0.9), forState: .Highlighted)
                     loginButton.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
                     loginButton.enabled = false
                     if loginButton.enabled == false {
                         //LoginButton is not enabled
-                        loginButton.layer.borderColor = UIColor.grayColor().CGColor
-                    } else {
-                        //LoginButton is not enabled
-                        loginButton.layer.borderColor = UIColor.blueColor().CGColor
+                        loginButton.layer.borderColor = UIColor.lightGrayColor().CGColor
                     }
-                    loginButton.layer.borderWidth = 1
+                    loginButton.layer.borderWidth = 1.3
                     loginButton.layer.cornerRadius = 7
                     loginButton.addTarget(self, action: #selector(LocationOrCustomerViewController.loginButtonPressed(_:)), forControlEvents: .TouchUpInside)
                     
+                    //Add a button so that the user can create an account if they have not alrady done so
                     createAccountButton.setTitle("Create an account", forState: .Normal)
                     createAccountButton.titleLabel?.font = UIFont.systemFontOfSize(15)
                     createAccountButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
                     createAccountButton.setTitleColor(UIColor.lightGrayColor(), forState: .Highlighted)
                     createAccountButton.addTarget(self, action: #selector(LocationOrCustomerViewController.createAccountButtonPressed(_:)), forControlEvents: .TouchUpInside)
+                    
+                    //Add loginView as a subview to the view controller
                     self.view.addSubview(self.loginView)
-
+                                    
+                    //Add loginView UI as a subview of loginView
                     self.loginView.addSubview(loginLabel)
-                    self.loginView.addSubview(emailTextField)
-                    self.loginView.addSubview(passwordTextField)
+                    self.loginView.addSubview(self.emailTextField)
+                    self.loginView.addSubview(self.passwordTextField)
                     self.loginView.addSubview(loginButton)
                     self.loginView.addSubview(createAccountButton)
+                    self.loginView.addSubview(self.loginViewErrorLabel)
                     
                     dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
+                        //Assign buttonLogin to loginButton to make it globally accessible
                         self.buttonLogin = loginButton
                         
-                        emailTextField.text = self.userEmail
-                        passwordTextField.text = self.userPassword
+                        //Add observer to notify us when the text field text changes
+                        self.emailTextField.addTarget(self, action: #selector(LocationOrCustomerViewController.TextFieldDidChange(_:)), forControlEvents: .EditingChanged)
+                        self.passwordTextField.addTarget(self, action: #selector(LocationOrCustomerViewController.TextFieldDidChange(_:)), forControlEvents: .EditingChanged)
                         
-                        emailTextField.addTarget(self, action: #selector(LocationOrCustomerViewController.TextFieldDidChange(_:)), forControlEvents: .EditingChanged)
-                        passwordTextField.addTarget(self, action: #selector(LocationOrCustomerViewController.TextFieldDidChange(_:)), forControlEvents: .EditingChanged)
- 
+                        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LocationOrCustomerViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+                        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LocationOrCustomerViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
                     }
-                    
                 }
- 
             }
-            
         }
-        
     }
     
+    //Action for the loginButton
     func loginButtonPressed(sender: UIButton) {
-        let fireBase = Firebase(url: "acapps.firebaseIO.com")
-        print("Login")
-        
-        fireBase.authUser(userEmail, password: userPassword, withCompletionBlock: { (error, authData) in
-            
-            if error != nil {
-                NSLog("Error creating user %@%", error)
-            } else {
-                print("Success, login")
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
+            //Create Firebase reference object
+            let fireBaseRef = Firebase(url: "acapps.firebaseIO.com")
+
+            //Authorize the user through fireBaseRef
+            fireBaseRef.authUser(self.getTextFieldText(self.emailTextField), password: self.getTextFieldText(self.passwordTextField)) { (error, authData) in
+                print(self.getTextFieldText(self.emailTextField))
+                print(self.getTextFieldText(self.passwordTextField))
+                //Handle an error if one occurs
+                if error != nil {
+                    print("Error: \(error)")
+                    let completeAnimation = false
+                    UIView.animateWithDuration(0.1, animations: {
+                        let quote = "\u{0022}"
+                        
+                        if error == "Error Domain=FirebaseAuthentication Code=-8 \(quote)(Error Code: INVALID_USER) The specified user does not exist.\(quote) UserInfo={NSLocalizedDescription=(Error Code: INVALID_USER) The specified user does not exist.}" {
+                            self.loginViewErrorLabel.text = "Invalid email"
+                        }
+                        
+                        }, completion: { (completeAnimation) in
+                            let seconds = 1.0
+                            let delay = seconds * Double(NSEC_PER_SEC)
+                            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                            
+                            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                                self.loginViewErrorLabel.text = ""
+                            })
+                    })
+                } else if authData != nil { /* Login success, print the authorization data specific to the user, display main view */
+                    self.presentView("mapViewViewController", animated: true)
+                }
             }
-            
-        })
-        
-        
+        }
     }
-    
+    //Action for the createAccountButton
     func createAccountButtonPressed(sender: UIButton) {
         print("Create account")
     }
-    
-    func TextFieldDidChange(sender: UITextField) {
-        for textField in textfieldCollection {
-            if textField.text?.utf16.count > 0 {
-                buttonLogin.enabled = true
-                buttonLogin.layer.borderColor = UIColor.blueColor().CGColor
+    //Method used to retrieve text from a specified UITextField, allows you to not have to declare an object for the text
+    func getTextFieldText(textField: TextField) -> String {
+        let textFieldString = textField.text
+        return textFieldString!
+    }
+    //Method used to get the current active UITextField
+    func getCurrentTextField() -> TextField {
+        var currentActiveTextField: TextField!
+        
+        for textField in self.textfieldCollection {
+            if textField.isFirstResponder() {
+                currentActiveTextField = textField
+            }
+        }
+        return currentActiveTextField
+    }
+    //Method used to detect when user taps return button on UIKeyboard and make the next UITextField in the view become the first responder
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if getCurrentTextField() == emailTextField {
+            self.emailTextField.resignFirstResponder()
+            self.passwordTextField.becomeFirstResponder()
+        } else if getCurrentTextField() == passwordTextField {
+            if buttonLogin.enabled == true {
+                passwordTextField.resignFirstResponder()
+                self.presentView("mapViewViewController", animated: true)
+                for textField in textfieldCollection {
+                    if textField.isFirstResponder() {
+                        textField.resignFirstResponder()
+                    }
+                }
             } else {
-                buttonLogin.enabled = false
-                buttonLogin.layer.borderColor = UIColor.grayColor().CGColor
+                self.emailTextField.becomeFirstResponder()
+            }
+        }
+        return true
+    }
+    //Method used to detect when all UITextFields have text and enable the loginButton
+    func TextFieldDidChange(sender: UITextField) {
+        dispatch_async(dispatch_get_main_queue()) {
+            for textField in self.textfieldCollection {
+                if textField.text?.utf16.count > 0 && self.isvalidEmailCheck(self.emailTextField.text!) {
+                    self.buttonLogin.enabled = true
+                    self.buttonLogin.layer.borderColor = self.loginButtonColor.CGColor
+
+                } else {
+                    self.buttonLogin.enabled = false
+                    self.buttonLogin.layer.borderColor = UIColor.lightGrayColor().CGColor
+                }
             }
         }
     }
+    func isvalidEmailCheck(email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(email)
+        
+    }
+    func keyboardWillShow(sender: NSNotification) {
+        UIView.animateWithDuration(0.5, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.loginView.frame = CGRectMake(self.view.bounds.size.width/2 - 155, self.view.bounds.size.height/2 - 315, self.view.frame.size.width/1.2, self.view.frame.size.height/1.55)
+            }, completion: nil)
+    }
+    func keyboardWillHide(sender: NSNotification) {
+        UIView.animateWithDuration(0.5, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.loginView.frame = CGRectMake(self.view.bounds.size.width/2 - 155, self.view.bounds.size.height/2 - 220, self.view.frame.size.width/1.2, self.view.frame.size.height/1.55)
+            }, completion: nil)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    //Method used to present a specified view
+    func presentView(VCID: String, animated: Bool) {
+        let VC = self.storyboard!.instantiateViewControllerWithIdentifier(VCID)
+        self.navigationController?.pushViewController(VC, animated: animated)
+    }
+    
     
     
 }
