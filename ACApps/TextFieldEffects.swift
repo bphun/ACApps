@@ -1,9 +1,9 @@
 //
-//  TextFieldEffects.swift
-//  ACApps
+//  TextFieldsEffects.swift
+//  TextFieldEffects
 //
-//  Created by Brandon Phan on 3/6/16.
-//  Copyright © 2016 Brandon Phan. All rights reserved.
+//  Created by Raúl Riera on 24/01/2015.
+//  Copyright (c) 2015 Raul Riera. All rights reserved.
 //
 
 import UIKit

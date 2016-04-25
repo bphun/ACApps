@@ -389,7 +389,7 @@ public class SCLAlertView: UIViewController {
     
     //Dismiss keyboard when tapped outside textfield
     func dismissKeyboard(){
-        self.view.endEditing(true)
+        self.view.endEditing(false)
     }
     
     // showSuccess(view, title, subTitle)

@@ -13,17 +13,9 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var storyboardMapView: MKMapView!
     @IBOutlet weak var navigationBar: UINavigationItem!
-    
+
     let xmlParser = XMLParser()
-//    let dataFetch = DataFetch()
-    /*
-    let annotation = MKPointAnnotation()
-    let annotation1 = MKPointAnnotation()
-    let annotation2 = MKPointAnnotation()
-    let annotation3 = MKPointAnnotation()
-    let annotation4 = MKPointAnnotation()
-    let annotation5 = MKPointAnnotation()
-    */
+//  let dataFetch = DataFetch()
     var manager: CLLocationManager!
     
     override func viewDidLoad() {
@@ -33,18 +25,24 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         dispatch_async(dispatch_get_main_queue()) {
             let navigationBarImage = UIImage(named: "CarePackage-Header")
             self.navigationItem.titleView = UIImageView(image: navigationBarImage)
+            self.navigationBar.hidesBackButton = true
+            
+            var gearImage = UIImage(named: "gearIcon")?.imageWithRenderingMode(.AlwaysTemplate)
+                        
+            let barButtonItem = UIBarButtonItem(image: gearImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapView.barButtonItemAction(_:)))
+            self.navigationBar.leftBarButtonItem = barButtonItem
+            
         }
+         
         
-        /*
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
-            NSLog("Start parse")
-            self.xmlParser.parse( { (success) -> Void in
-                if success {
-                    self.setupMapView()
+            self.xmlParser.parse({ (success) -> Void in
+                if (success) {
+                    print("Successful parse")
                 }
             })
         }
-        */
+ 
         NSLog("Finish")
     }
     
@@ -131,4 +129,8 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         return annotationView
     }
 
+    func barButtonItemAction(sender: UIBarButtonItem) {
+        print("Bar button item")
+    }
+    
 }

@@ -8,16 +8,17 @@
 
 import Foundation
 import UIKit
-import Spring
+import LocalAuthentication
 import Firebase
 
 class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
 
     let questionareAlertView = SCLAlertView()
+    let alertView1 = SCLAlertView()
     let UserSignupViewController = userSignupViewController()
     let appDelegate = AppDelegate()
     let loginView = UIView()
-    let loginViewErrorLabel = UILabel()
+    let touchIDLabel = UILabel()
     
     var emailTextField = TextField()
     var passwordTextField = TextField()
@@ -39,7 +40,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { () -> Void in
             if NSUserDefaults.isFirstLaunch() {
                 //User's first time launching the application
-                self.isFirstLaunch = true
+                self.isFirstLaunch = true /* <- Change line */
             } else {
                 //Not user's first time launching the application
                 self.isFirstLaunch = false     /* <- Change line */
@@ -61,33 +62,28 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
             
             if self.isFirstLaunch == true {
                 //Is first launch
-                //self.questionareAlertView.addButton("Okay", target: self, selector: <#T##Selector#>)
+                self.questionareAlertView.addButton("Okay", target: self, selector: #selector(LocationOrCustomerViewController.firstAlertViewAction(_:)))
                 self.questionareAlertView.showInfo("?", subTitle: "Before we begin, we have to ask you a question")
                 print("FirstLaunch")
             } else {
                 //Not user's first time launching the application, will display the login view
                 
-                
                 if self.appDelegate.shouldDisplayLogin == true { /* Bypass login view, system will login, display main view */
                     self.presentViewController(MapView(), animated: true, completion: nil)
+                    
                 } else if self.appDelegate.shouldDisplayLogin == false {    /* The view should display the login view*/
                     //MARK: Login view setup
                     //Create/setup UI objects
-                    self.emailTextField = TextField(frame: CGRectMake(self.loginView.frame.size.width + 40, self.loginView.frame.size.height + 100, 230, 40))
-                    self.passwordTextField = TextField(frame: CGRectMake(self.emailTextField.frame.size.width - 190, self.emailTextField.frame.size.height + 110, 230, 40))
-                    let loginLabel = UILabel(frame: CGRectMake(self.emailTextField.frame.size.width - 100, self.emailTextField.frame.size.height - 20, 240, 40))
-                    let loginButton = UIButton(frame: CGRectMake(self.passwordTextField.frame.size.width - 120, self.passwordTextField.frame.size.height + 168, 100, 30))
-                    let createAccountButton = UIButton(frame: CGRectMake(self.passwordTextField.frame.size.width - 175, loginButton.frame.size.height + 375, 200, 20))
+                    self.emailTextField = TextField(frame: CGRectMake(self.loginView.frame.size.width + 20, self.loginView.frame.size.height + 100, 290, 40))
+                    self.passwordTextField = TextField(frame: CGRectMake(self.emailTextField.frame.size.width - 270, self.emailTextField.frame.size.height + 110, 290, 40))
+                    let loginLabel = UILabel(frame: CGRectMake(self.emailTextField.frame.size.width - 150, self.emailTextField.frame.size.height - 20, 240, 40))
+                    let loginButton = UIButton(frame: CGRectMake(self.passwordTextField.frame.size.width - 170, self.passwordTextField.frame.size.height + 168, 100, 30))
+                    let createAccountButton = UIButton(frame: CGRectMake(self.passwordTextField.frame.size.width - 215, loginButton.frame.size.height + 420, 200, 20))
                     
                     //Setup the loginView
                     self.loginView.layer.cornerRadius = 20
-                    self.loginView.frame = CGRectMake(self.view.bounds.size.width/2 - 155, self.view.bounds.size.height/2 - 220, self.view.frame.size.width/1.2, self.view.frame.size.height/1.55)
+                    self.loginView.frame = CGRectMake(self.view.bounds.size.width/2 - 175, self.view.bounds.size.height/2 - 250, self.view.frame.size.width/1.2, self.view.frame.size.height/1.55)
                     self.loginView.backgroundColor = UIColor.whiteColor()
-                    
-                    //Setup the loginViewErrorLabel
-                    self.loginViewErrorLabel.frame = CGRectMake(loginButton.frame.size.width + 40, loginButton.frame.size.height + 220, self.loginView.frame.size.width / 1.2, 20)
-                    self.loginViewErrorLabel.textColor = UIColor(hex: "6A7989")
-                    self.loginViewErrorLabel.font = UIFont(name: "Avenir Next", size: 15)
                     
                     //Add the textFields to textFieldColection array
                     self.textfieldCollection.append(self.emailTextField)
@@ -159,7 +155,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
                     self.loginView.addSubview(self.passwordTextField)
                     self.loginView.addSubview(loginButton)
                     self.loginView.addSubview(createAccountButton)
-                    self.loginView.addSubview(self.loginViewErrorLabel)
+                    self.loginView.addSubview(self.touchIDLabel)
                     
                     dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
                         //Assign buttonLogin to loginButton to make it globally accessible
@@ -176,38 +172,67 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    //MARK: Alert view actions
+    func firstAlertViewAction(sender: SCLAlertView) {
+        dispatch_async(dispatch_get_main_queue()) {
+            //Create the second alert view
+            self.questionareAlertView.removeFromParentViewController()
+            self.alertView1.addButton("Customer of Service", target: self, selector: #selector(LocationOrCustomerViewController.isCustomerOfService(_:)))
+            self.alertView1.addButton("Drop off Location", target: self, selector: #selector(LocationOrCustomerViewController.isDropOffLocation(_:)))
+            self.alertView1.showEdit("?", subTitle: "Select the one that applies to you")
+        }
+    }
+    func isCustomerOfService(sender: SCLAlertView) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.alertView1.removeFromParentViewController()
+            self.presentViewControllerUsingNavigationControllerNoReturn("UserSignUpViewController", animated: true, CompletionHandler: nil)
+        }
+    }
+    func isDropOffLocation(sender: SCLAlertView) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.alertView1.removeFromParentViewController()
+            self.presentViewControllerUsingNavigationControllerNoReturn("locationSignupViewController", animated: true, CompletionHandler: nil)
+        }
+    }
     
+    
+    //MARK: Methods
     //Action for the loginButton
     func loginButtonPressed(sender: UIButton) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) { () -> Void in
             //Create Firebase reference object
             let fireBaseRef = Firebase(url: "acapps.firebaseIO.com")
 
             //Authorize the user through fireBaseRef
             fireBaseRef.authUser(self.getTextFieldText(self.emailTextField), password: self.getTextFieldText(self.passwordTextField)) { (error, authData) in
-                print(self.getTextFieldText(self.emailTextField))
-                print(self.getTextFieldText(self.passwordTextField))
+                
                 //Handle an error if one occurs
                 if error != nil {
-                    print("Error: \(error)")
-                    let completeAnimation = false
-                    UIView.animateWithDuration(0.1, animations: {
-                        let quote = "\u{0022}"
-                        
-                        if error == "Error Domain=FirebaseAuthentication Code=-8 \(quote)(Error Code: INVALID_USER) The specified user does not exist.\(quote) UserInfo={NSLocalizedDescription=(Error Code: INVALID_USER) The specified user does not exist.}" {
-                            self.loginViewErrorLabel.text = "Invalid email"
-                        }
-                        
-                        }, completion: { (completeAnimation) in
-                            let seconds = 1.0
-                            let delay = seconds * Double(NSEC_PER_SEC)
-                            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                            
-                            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                                self.loginViewErrorLabel.text = ""
-                            })
+                    
+                    let darkView = UIView(frame: CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height))
+
+                    let errorAlertView = SCLAlertView()
+                    errorAlertView.addButton("OK", action: {
+                        UIView.animateWithDuration(5.0, animations: {
+                            darkView.resignFirstResponder()
+                            darkView.removeFromSuperview()
+                            errorAlertView.removeFromParentViewController()
+                            errorAlertView.resignFirstResponder()
+                        })
+
                     })
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.view.endEditing(true)
+                        darkView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+                        
+                        self.view.addSubview(darkView)
+                        errorAlertView.showError("Error", subTitle: "Error logging in")
+                    }
+                
+                    
                 } else if authData != nil { /* Login success, print the authorization data specific to the user, display main view */
+                    self.view.endEditing(true)
                     self.presentView("mapViewViewController", animated: true)
                 }
             }
@@ -215,7 +240,11 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
     }
     //Action for the createAccountButton
     func createAccountButtonPressed(sender: UIButton) {
-        print("Create account")
+        self.loginView.resignFirstResponder()
+        self.loginView.removeFromSuperview()
+        
+        self.questionareAlertView.addButton("Okay", target: self, selector: #selector(LocationOrCustomerViewController.firstAlertViewAction(_:)))
+        self.questionareAlertView.showInfo("?", subTitle: "Before we begin, we have to ask you a question")
     }
     //Method used to retrieve text from a specified UITextField, allows you to not have to declare an object for the text
     func getTextFieldText(textField: TextField) -> String {
@@ -291,6 +320,12 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
     func presentView(VCID: String, animated: Bool) {
         let VC = self.storyboard!.instantiateViewControllerWithIdentifier(VCID)
         self.navigationController?.pushViewController(VC, animated: animated)
+    }
+    func presentViewControllerUsingNavigationControllerNoReturn(VCID: String, animated: Bool, CompletionHandler: (() -> Void)?) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyBoard.instantiateViewControllerWithIdentifier(VCID)
+        let navigationController = UINavigationController(rootViewController: VC)
+        self.presentViewController(navigationController, animated: animated, completion: CompletionHandler)
     }
     
     

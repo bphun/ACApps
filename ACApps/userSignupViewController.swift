@@ -50,7 +50,6 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
             // Setup NSNotificationCenter to notify us when all textFields are filled
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userSignupViewController.nextTextField(_:)), name: UIKeyboardWillHideNotification, object: nil)
             self.firstNameTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
             self.lastNameTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
             self.emailTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
@@ -59,14 +58,10 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func nextTextField(sender: TextField) {
-        
-    }
-    
     func textFieldDidChange(sender: TextField) {
         
         for textField in textFieldCollection {
-            if textField.text?.utf16.count > 0 && isvalidEmailCheck(emailTextField.text!){
+            if textField.text?.utf16.count >= 2 && isvalidEmailCheck(emailTextField.text!){
                 UIView.animateWithDuration(10.0, animations: {
                     self.nextBarButtonItem.enabled = true
                 })
@@ -83,22 +78,37 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if getCurrentTextField() == firstNameTextField {
-            firstNameTextField.resignFirstResponder()
-            lastNameTextField.becomeFirstResponder()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.firstNameTextField.resignFirstResponder()
+                self.lastNameTextField.becomeFirstResponder()
+            }
         } else if getCurrentTextField() == lastNameTextField {
-            lastNameTextField.resignFirstResponder()
-            emailTextField.becomeFirstResponder()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.lastNameTextField.resignFirstResponder()
+                self.emailTextField.becomeFirstResponder()
+            }
         } else if getCurrentTextField() == emailTextField {
-            emailTextField.resignFirstResponder()
-            createUserAndPresentNextView()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.emailTextField.resignFirstResponder()
+                self.passwordTextField.becomeFirstResponder()
+            }
         } else if getCurrentTextField() == passwordTextField {
-            for textField in textFieldCollection {
-                if textField.text == "" {
-                    textField.becomeFirstResponder()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.passwordTextField.resignFirstResponder()
+                self.confirmPasswordTextField.becomeFirstResponder()
+            }
+        } else if getCurrentTextField() == confirmPasswordTextField {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.confirmPasswordTextField.resignFirstResponder()
+                for textField in self.textFieldCollection {
+                    if textField.text == "" {
+                        textField.becomeFirstResponder()
+                    } else if textField.text != "" {
+                        textField.resignFirstResponder()
+                        self.createUserAndPresentNextView()
+                    }
                 }
             }
-            passwordTextField.resignFirstResponder()
-            confirmPasswordTextField.becomeFirstResponder()
         }
         return true
     }
@@ -117,42 +127,60 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
     
     func createUserAndPresentNextView() {
         if firstNameTextField.text! != "" && lastNameTextField.text! != "" && emailTextField.text! != "" && passwordTextField.text! != "" && confirmPasswordTextField.text! != "" {
-            // All textFields are filled and barButtonItem is enabled
-            self.userFirstName = firstNameTextField.text!
-            self.userLastName = lastNameTextField.text!
-            self.userEmail = emailTextField.text!
-            self.userPassword = passwordTextField.text!
-            
-            // Resign all textFields and create the user
-            dispatch_async(dispatch_get_main_queue()) {
-                for textField in self.textFieldCollection {
-                    if textField.isFirstResponder() {
-                        textField.resignFirstResponder()
-                    }
-                }
+            if passwordTextField.text == confirmPasswordTextField.text {
+                // All textFields are filled and barButtonItem is enabled
+                self.userFirstName = firstNameTextField.text!
+                self.userLastName = lastNameTextField.text!
+                self.userEmail = emailTextField.text!
+                self.userPassword = passwordTextField.text!
                 
-                self.createUser(self.userEmail, password: self.userPassword, firstName: self.userFirstName, lastName: self.userLastName, completionHandler: { (success) -> Void in
-                    if (success) {
-                        // Success creating the user, present the next view
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.presentView("mapViewViewController", animated: true)
-                            print("Show next view")
+                // Resign all textFields and create the user
+                dispatch_async(dispatch_get_main_queue()) {
+                    for textField in self.textFieldCollection {
+                        if textField.isFirstResponder() {
+                            textField.resignFirstResponder()
                         }
-                    } else if self.accountCreationError == true {
+                    }
                     
-                        // Error creating the user
-                        let accountCreationErrorAlertView = SCLAlertView()
-                        accountCreationErrorAlertView.addButton("Ok", action: {
-                            accountCreationErrorAlertView.removeFromParentViewController()
-                        })
-                        accountCreationErrorAlertView.showError("Error", subTitle: "Error creating account")
+                    self.createUser(self.userEmail, password: self.userPassword, firstName: self.userFirstName, lastName: self.userLastName, completionHandler: { (success) -> Void in
+                        if (success) {
+                            
+                            let firebaseDataHandling = FirebaseDataHandling()
+                            firebaseDataHandling.uploadUserDataToFireBase_User(self.userFirstName, lastName: self.userLastName, Email: self.userEmail)
+                            
+                            // Success creating the user, present the next view
+                            self.presentView("mapViewViewController", animated: true)
+                            
+                            //self.presentView("mapViewViewController", animated: true)
+                            print("Show next view")
+                            
+                        } else if self.accountCreationError == true {
+                            
+                            // Error creating the user
+                            let accountCreationErrorAlertView = SCLAlertView()
+                            accountCreationErrorAlertView.addButton("Ok", action: {
+                                accountCreationErrorAlertView.removeFromParentViewController()
+                            })
+                            accountCreationErrorAlertView.showError("Error", subTitle: "Error creating account")
+                        }
+                    })
+                }
+            } else {
+                let darkView = UIView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height))
+                darkView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+                let alertView = SCLAlertView()
+                alertView.addButton("OK", action: {
+                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
+                        alertView.removeFromParentViewController()
+                        alertView.resignFirstResponder()
+                        darkView.removeFromSuperview()
+                        darkView.resignFirstResponder()
                     }
                 })
+                self.view.addSubview(darkView)
+                alertView.showError("Error", subTitle: "The passwords don't match")
             }
 
-        } else {
-            // Not all textFields are enabled
-        
         }
     }
     
@@ -191,7 +219,23 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
         ref.createUser(email, password: password) { (error, result) in
             
             if error != nil {
-                print("Error: \(error)")
+                
+                let darkView = UIView(frame: CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height))
+                darkView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+                let errorAlertView = SCLAlertView()
+                errorAlertView.addButton("Okay", action: {
+                    
+                    UIView.animateWithDuration(5.0, animations: { 
+                        dispatch_async(dispatch_get_main_queue()) {
+                            errorAlertView.removeFromParentViewController()
+                            darkView.removeFromSuperview()
+                        }
+                    })
+                    
+                })
+                self.view.addSubview(darkView)
+                errorAlertView.showError("Error", subTitle: "There was an error creating your account")
+                
                 self.createdUser = false
                 self.accountCreationError = true
             } else {
@@ -203,5 +247,9 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
             
         }
         
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
