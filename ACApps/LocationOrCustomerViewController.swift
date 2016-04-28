@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
-import LocalAuthentication
+import CryptoSwift
 import Firebase
+import ReachabilitySwift
 
 class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
 
@@ -27,7 +28,10 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
     let loginButtonColor = UIColor(hex: "66BB6A")
     
     internal var isFirstLaunch = Bool()
-
+    internal var reachableByWIFI = Bool()
+    internal var reachableByCellular = Bool()
+    internal var unreachable = Bool()
+    
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var logoImageView: UIImageView!
@@ -97,7 +101,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
                     //Setup emailTextField with required settings
                     self.emailTextField.delegate = self
                     self.emailTextField.animateViewsForTextDisplay()
-                    self.emailTextField.placeholder = "User Name"
+                    self.emailTextField.placeholder = "Email"
                     self.emailTextField.clearButtonMode = .WhileEditing
                     self.emailTextField.keyboardType = .EmailAddress
                     self.emailTextField.autocorrectionType = .No
@@ -124,7 +128,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
                     self.passwordTextField.borderActiveColor = UIColor(hue: 238, saturation: 42, brightness: 42, alpha: 1)
                     self.passwordTextField.placeholderColor = UIColor(hex: "6A7989")
                     self.passwordTextField.textColor = UIColor(hex: "6A7989")
-
+                    
                     //Setup the login button
                     loginButton.setTitle("Login", forState: .Normal)
                     loginButton.setTitleColor(self.loginButtonColor, forState: .Normal)
@@ -148,7 +152,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
                     
                     //Add loginView as a subview to the view controller
                     self.view.addSubview(self.loginView)
-                                    
+                    
                     //Add loginView UI as a subview of loginView
                     self.loginView.addSubview(loginLabel)
                     self.loginView.addSubview(self.emailTextField)
@@ -157,7 +161,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
                     self.loginView.addSubview(createAccountButton)
                     self.loginView.addSubview(self.touchIDLabel)
                     
-                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
+                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
                         //Assign buttonLogin to loginButton to make it globally accessible
                         self.buttonLogin = loginButton
                         
@@ -172,6 +176,7 @@ class LocationOrCustomerViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+
     //MARK: Alert view actions
     func firstAlertViewAction(sender: SCLAlertView) {
         dispatch_async(dispatch_get_main_queue()) {

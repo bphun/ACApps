@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "connection-error-512.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "UITabBarMore_2x.png",
       "scale" : "2x"
     },
     {
