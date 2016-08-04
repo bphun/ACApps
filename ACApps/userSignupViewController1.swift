@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CryptoSwift
 
-class userSignupViewController: UIViewController, UITextFieldDelegate {
+class userSignupViewController1: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTextField: TextField!
     @IBOutlet weak var lastNameTextField: TextField!
@@ -39,10 +39,10 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
         emailTextField.returnKeyType = .Done
         
         // Setup NSNotificationCenter to tell us when all text fields have been filled and have text
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userSignupViewController.nextTextField(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        firstNameTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        lastNameTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        emailTextField.addTarget(self, action: #selector(userSignupViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userSignupViewController1.nextTextField(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        firstNameTextField.addTarget(self, action: #selector(userSignupViewController1.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        lastNameTextField.addTarget(self, action: #selector(userSignupViewController1.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        emailTextField.addTarget(self, action: #selector(userSignupViewController1.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
     }
     
     // Check if all text fields have text

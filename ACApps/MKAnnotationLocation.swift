@@ -6,22 +6,37 @@
 //  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 
-import Foundation
 import MapKit
 
 class MKAnnotationLocation: NSObject, MKAnnotation {
-    var title: String?
-    var subtitle: String?
-    var latitude: Double
-    var longitude:Double
     
-    var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
+    let title: String?
+    let subtitle: String?
+    let coordinate: CLLocationCoordinate2D
     
-    init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+        
+        super.init()
     }
 
+
 }
+
+/*
+ 
+ init(latitude: Double, longitude: Double, title: String, subtitle: String) {
+ self.latitude = latitude
+ self.longitude = longitude
+ self.title = title
+ self.subtitle = subtitle
+ 
+ super.init()
+ }
+ 
+ var coordinate: CLLocationCoordinate2D {
+ return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+ }
+ */

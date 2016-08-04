@@ -25,17 +25,13 @@ class SideBar: NSObject, sideBarTableViewControllerDelegate {
     var delegate: SideBarDelegate?
     var isSideBarOpen = false
     
-    var reuseIdentifierString = String()
-    
     override init() {
         super.init()
     }
     
-    init(sourceView: UIView, menuItem: Array<String>, reuseIdentifier: String! ) {
+    init(sourceView: UIView, menuItem: Array<String>) {
         super.init()
         originView = sourceView
-        
-        reuseIdentifierString = reuseIdentifier
         
         sideBarTableViewController.tableData = menuItem
         

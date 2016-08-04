@@ -20,12 +20,12 @@ class XMLParser: NSObject, NSXMLParserDelegate {
     
     //Hospital data
     var hospitalSearch = Bool()
-    var hospitalDataArray = NSMutableArray()
+    var hospitalDataArray = [String]()
     var H_Facillity, H_Alias, H_Address, H_City, H_State, H_Zip_Code, H_Status, H_Type, H_longitude, H_Latitude, H_county: String!
     
     //School data
     var schoolSearch = Bool()
-    var schoolDataArray = NSMutableArray()
+    var schoolDataArray = [String]()
     var SC_X_Coordinate, SC_Y_Coordinate, SC_schoolName, SC_address, SC_city, SC_state, SC_gradeLevel, SC_organizationType: String!
     
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -37,23 +37,28 @@ class XMLParser: NSObject, NSXMLParserDelegate {
     typealias CompletionHandler = (success: Bool) -> Void
     func parse(completionHandler: CompletionHandler) {
         
-        let schoolDataArray = self.schoolDataArray
-        let hospitalDataArray = self.hospitalDataArray
-        
         let schoolURL = "https://data.acgov.org/api/views/wswg-zukg/rows.xml?accessType=DOWNLOAD"
         let hospitalURL = "https://data.acgov.org/api/views/eje3-rj63/rows.xml?accessType=DOWNLOAD"
+ 
+        /*
+        let schoolDataFile = NSBundle.mainBundle().pathForResource("schoolXML", ofType: "xml")
+        let hospitalDataFile = NSBundle.mainBundle().pathForResource("hospitalXML", ofType: "xml")
         
-        let URLArray = [schoolURL, hospitalURL]
+        let schoolDataURL = NSURL(fileURLWithPath: schoolDataFile!, isDirectory: true)
+        let hospitalDataURL = NSURL(fileURLWithPath: hospitalDataFile!, isDirectory: true)
+        */
         
-        for URL in URLArray {
+        let XMLArray = [schoolURL, hospitalURL]
+        
+        for XML in XMLArray {
             
-            if URL == schoolURL {
+            if XML == schoolURL {
                 schoolSearch = true
-            } else if URL == hospitalURL {
+            } else if XML == hospitalURL {
                 hospitalSearch = true
             }
             
-            self.parser = NSXMLParser(contentsOfURL: NSURL(string: URL)!)!
+            self.parser = NSXMLParser(contentsOfURL: NSURL(string: XML)!)!
             parser.delegate = self
 
             let success: Bool = self.parser.parse()
@@ -67,8 +72,18 @@ class XMLParser: NSObject, NSXMLParserDelegate {
         }
     }
 
-    
-    
+    /*
+ let schoolXMLPath = NSBundle.mainBundle().pathForResource("schoolXML", ofType: "xml")
+ let hospitalXMLPath = NSBundle.mainBundle().pathForResource("hospitalXML", ofType: "xml")
+ 
+ let schoolXML = NSData(contentsOfFile: schoolXMLPath!)
+ let hospitalXML = NSData(contentsOfFile: hospitalXMLPath!)
+ 
+ let URLArray = [schoolXML, hospitalXML]
+ 
+ for XMLFile in URLArray {
+ */
+ 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                                  Parse Hospital XML File
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -106,102 +121,111 @@ class XMLParser: NSObject, NSXMLParserDelegate {
             if (self.passName && self.schoolSearch == true) {
                 
                 if self.currentElement == "x" {
+                    let dictKey = "SC_long: "
                     self.SC_X_Coordinate = self.currentParsedElement + string
-                    self.schoolDataArray.addObject("long: " + self.SC_X_Coordinate)
+                    self.schoolDataArray.append(dictKey + self.SC_X_Coordinate)
                 }
                 
                 if self.currentElement == "y" {
+                    let dictKey = "SC_lat: "
                     self.SC_Y_Coordinate = self.currentParsedElement + string
-                    self.schoolDataArray.addObject("lat" + self.SC_Y_Coordinate)
+                    self.schoolDataArray.append(dictKey + self.SC_Y_Coordinate)
                 }
-                
                 if self.currentElement == "site" {
+                    let dictKey = "SC_site: "
                     self.SC_schoolName = self.currentParsedElement + string
-                    self.schoolDataArray.addObject(self.SC_schoolName)
+                    self.schoolDataArray.append(dictKey + self.SC_schoolName)
                 }
                 
-                if self.currentElement == "SC_address" {
+                if self.currentElement == "address" {
+                    let dictKey = "SC_address: "
                     self.SC_address = self.currentParsedElement + string
-                    self.schoolDataArray.addObject(self.SC_address)
+                    self.schoolDataArray.append(dictKey + self.SC_address)
                 }
                 
-                if self.currentElement == "SC_city" {
+                if self.currentElement == "city" {
+                    let dictKey = "SC_city: "
                     self.SC_city = self.currentParsedElement + string
-                    self.schoolDataArray.addObject(self.SC_city)
+                    self.schoolDataArray.append(dictKey + self.SC_city)
                 }
                 
                 if self.currentElement == "state" {
+                    let dictKey = "SC_state: "
                     self.SC_state = self.currentParsedElement + string
-                    self.schoolDataArray.addObject(self.SC_state)
+                    self.schoolDataArray.append(dictKey + self.SC_state)
                 }
                 
                 if self.currentElement == "type" {
+                    let dictKey = "SC_type: "
                     self.SC_gradeLevel = self.currentParsedElement + string
-                    self.schoolDataArray.addObject(self.SC_gradeLevel)
+                    self.schoolDataArray.append(dictKey + self.SC_gradeLevel)
                 }
                 
                 if self.currentElement == "org" {
+                    let dictKey = "SC_org: "
                     self.SC_organizationType = self.currentParsedElement + string
-                    self.schoolDataArray.addObject(self.SC_organizationType)
+                    self.schoolDataArray.append(dictKey + self.SC_organizationType)
                 }
+                
+                
             }
             
             if (self.passName && self.hospitalSearch == true) {
                 
                 if self.currentElement == "facility" {
+                    let dictKey = "H_facility: "
                     self.H_Facillity = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Facillity)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Facillity)
                 }
                 if self.currentElement == "alias" {
+                    let dictKey = "H_alias: "
                     self.H_Alias = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Alias)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Alias)
                 }
                 if self.currentElement == "address_1" {
+                    let dictKey = "H_address: "
                     self.H_Address = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Address)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Address)
                 }
                 if self.currentElement == "city" {
+                    let dictKey = "H_city: "
                     self.H_City = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_City)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_City)
                 }
                 if self.currentElement == "state" {
+                    let dictKey = "H_state: "
                     self.H_State = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_State)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_State)
                 }
                 if self.currentElement == "zip_Code" {
+                    let dictKey = "H_zip_Code: "
                     self.H_Zip_Code = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Zip_Code)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Zip_Code)
                 }
                 if self.currentElement == "status" {
+                    let dictKey = "H_status: "
                     self.H_Status = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Status)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Status)
                 }
                 if self.currentElement == "type" {
+                    let dictKey = "H_type: "
                     self.H_Type = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Type)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Type)
                 }
                 if self.currentElement == "longitude" {
+                    let dictKey = "H_long: "
                     self.H_longitude = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_longitude)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_longitude)
                 }
                 if self.currentElement == "latitude" {
+                    let dictKey = "H_long: "
                     self.H_Latitude = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_Latitude)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_Latitude)
                 }
                 if self.currentElement == "country" {
+                    let dictKey = "H_country: "
                     self.H_county = self.currentParsedElement + string
-                    self.hospitalDataArray.addObject(self.H_county)
-                    print(self.hospitalDataArray)
+                    self.hospitalDataArray.append(dictKey + self.H_county)
                 }
             }
         }

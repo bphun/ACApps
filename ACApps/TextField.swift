@@ -1,9 +1,9 @@
 //
-//  TextFieldsEffects.swift
-//  TextFieldEffects
+//  LocationOrCustomerViewController.swift
+//  ACApps
 //
-//  Created by Raúl Riera on 24/01/2015.
-//  Copyright (c) 2015 Raul Riera. All rights reserved.
+//  Created by Brandon Phan on 4/18/16.
+//  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 
 import UIKit

@@ -10,17 +10,27 @@ import Foundation
 import UIKit
 import Firebase
 
+
 class FirebaseDataHandling {
     
-    func uploadUserDataToFireBase_User(firstName: String, lastName: String, Email: String) {
+    func uploadUserDataToFireBase_User(firstName: String, lastName: String, Email: String, UID: String) {
         let fireBaseRootRef = Firebase(url: "https://acapps.firebaseio.com")
         let usersRef = fireBaseRootRef.childByAppendingPath("users")
 
-        let userData = ["First Name": firstName, "Last Name": lastName, "Email": Email]
+        let userData = ["First Name": firstName, "Last Name": lastName, "Email": Email, "UID": UID]
         
-        let users = [firstName + lastName: userData]
         usersRef.childByAppendingPath(firstName + lastName).setValue(userData)
     }
+    
+    func uploadUserDataToFireBase_Donator(firstName: String, lastName: String, Email: String, UID: String) {
+        let fireBaseRootRef = Firebase(url: "https://acapps.firebaseio.com")
+        let usersRef = fireBaseRootRef.childByAppendingPath("Donator")
+        
+        let userData = ["First Name": firstName, "Last Name": lastName, "Email": Email, "UID": UID]
+        
+        usersRef.childByAppendingPath(firstName + lastName).setValue(userData)
+    }
+    
 }
 
 
@@ -38,4 +48,5 @@ class FirebaseDataHandling {
  usersRef.setValue(users)
  usersRef.childByAppendingPath("alanisawesome").setValue(alanisawesome)
  usersRef.childByAppendingPath("gracehop").setValue(gracehop)
+ 
  */

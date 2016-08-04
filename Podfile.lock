@@ -1,10 +1,31 @@
 PODS:
   - Firebase (2.5.1)
+  - ReachabilitySwift (2.3.3)
+  - Spring (1.0.3)
 
 DEPENDENCIES:
-  - Firebase (>= 2.5.1)
+  - Firebase (<= 2.5.1)
+  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
+
+EXTERNAL SOURCES:
+  ReachabilitySwift:
+    :git: https://github.com/ashleymills/Reachability.swift
+  Spring:
+    :branch: swift2
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  ReachabilitySwift:
+    :commit: fa90df50c04f5743fbdf643cbe8d10562d75673d
+    :git: https://github.com/ashleymills/Reachability.swift
+  Spring:
+    :commit: 18d5c7b74489de8044e34767f856d1e574f0820e
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
 COCOAPODS: 0.39.0

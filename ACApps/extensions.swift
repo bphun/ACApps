@@ -78,5 +78,23 @@ extension NSDate {
         //Return Result
         return dateWithHoursAdded
     }
-        
 }
+
+//Append data to Dictionary with key
+extension Dictionary {
+    func appendWithKey(destinationDictionary: [String : String], key: String, data: String) -> [String : String] {
+        var destinationDictionary = destinationDictionary
+        
+        if destinationDictionary == ["" : ""] {
+            destinationDictionary.startIndex
+            destinationDictionary[key] = data
+        } else {
+            destinationDictionary.popFirst()
+            destinationDictionary[key] = data
+        }
+        
+        return destinationDictionary
+    }
+}
+
+

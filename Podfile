@@ -4,7 +4,8 @@
 use_frameworks!
 
 target 'ACApps' do
-    pod 'Firebase', '>= 2.5.1'
+    pod 'Firebase', ‘<= 2.5.1'
+    pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
 end
 

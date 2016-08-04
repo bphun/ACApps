@@ -28,10 +28,10 @@ class SideBarTableViewController: UITableViewController {
     
 
     override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell? = tableView!.dequeueReusableCellWithIdentifier("reuseIdentifier")! as UITableViewCell
+        var cell: UITableViewCell? = tableView!.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "reuseIdentifier")
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
             // Configure the cell...
             
             cell!.backgroundColor = UIColor.clearColor()

@@ -146,13 +146,10 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
                         if (success) {
                             
                             let firebaseDataHandling = FirebaseDataHandling()
-                            firebaseDataHandling.uploadUserDataToFireBase_User(self.userFirstName, lastName: self.userLastName, Email: self.userEmail)
+                            firebaseDataHandling.uploadUserDataToFireBase_User(self.userFirstName, lastName: self.userLastName, Email: self.userEmail, UID: "")
                             
                             // Success creating the user, present the next view
-                            self.presentView("mapViewViewController", animated: true)
-                            
-                            //self.presentView("mapViewViewController", animated: true)
-                            print("Show next view")
+                            self.presentViewControllerUsingNavigationControllerNoReturn("mapViewViewController", animated: true, CompletionHandler: nil)
                             
                         } else if self.accountCreationError == true {
                             
@@ -170,7 +167,7 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
                 darkView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
                 let alertView = SCLAlertView()
                 alertView.addButton("OK", action: {
-                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { () -> Void in
+                    dispatch_async(dispatch_get_main_queue()) {
                         alertView.removeFromParentViewController()
                         alertView.resignFirstResponder()
                         darkView.removeFromSuperview()
@@ -181,19 +178,6 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
                 alertView.showError("Error", subTitle: "The passwords don't match")
             }
 
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let segueId = "passwordSetupSegue"
-        if segue.identifier == segueId {
-            print("Prepare for segue: \(segueId)")
-            
-            if let destinationVC: passwordSetupViewController = segue.destinationViewController as? passwordSetupViewController {
-                destinationVC.firstName = userFirstName
-                destinationVC.lastName = userLastName
-                destinationVC.email = userEmail
-            }
         }
     }
     
@@ -240,6 +224,8 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
                 self.accountCreationError = true
             } else {
                 print(String(result))
+                let firebaseDataHandling = FirebaseDataHandling()
+                firebaseDataHandling.uploadUserDataToFireBase_User(firstName, lastName: lastName, Email: email, UID: String(result))
                 self.createdUser = true
                 self.accountCreationError = false
                 completionHandler(success: self.createdUser)
@@ -248,7 +234,16 @@ class userSignupViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-
+    func presentViewControllerUsingNavigationControllerNoReturn(VCID: String, animated: Bool, CompletionHandler: (() -> Void)?) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let VC = storyBoard.instantiateViewControllerWithIdentifier(VCID)
+            let navigationController = UINavigationController(rootViewController: VC)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentViewController(navigationController, animated: animated, completion: CompletionHandler)
+            }
+        }
+    }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }

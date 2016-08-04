@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  ACApps
 //
@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             shouldDisplayLogin = false
             print("Should not display login")
         }
+        
+        //Pause threads to display splash screen
+        NSThread.sleepForTimeInterval(1.5)
         
         return true
     }

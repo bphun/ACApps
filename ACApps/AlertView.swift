@@ -1,9 +1,9 @@
 //
-//  AlertView.swift
-//  ACApps
+//  SCLAlertView.swift
+//  SCLAlertView Example
 //
-//  Created by Brandon Phan on 3/7/16.
-//  Copyright © 2016 Brandon Phan. All rights reserved.
+//  Created by Viktor Radchenko on 6/5/14.
+//  Copyright (c) 2014 Viktor Radchenko. All rights reserved.
 //
 
 import Foundation

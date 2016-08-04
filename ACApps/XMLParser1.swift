@@ -6,10 +6,12 @@
 //  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 
+
+ 
 import Foundation
 import MapKit
 
-class XMLParser: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
+class XMLParser1: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
     
     var parser = NSXMLParser()
     var strXMLData = String()
@@ -131,14 +133,12 @@ class XMLParser: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
                 
                 if self.currentElement == "x" {
                     self.SC_X_Coordinate = self.currentParsedElement + string
-                    self.SC_X_Coordinate.removeAtIndex(self.SC_X_Coordinate.startIndex)
                     self.SC_X_CoordinateArray.append(self.SC_X_Coordinate)
                     print(self.SC_X_Coordinate)
                 }
                 
                 if self.currentElement == "y" {
                     self.SC_Y_Coordinate = self.currentParsedElement + string
-                    self.SC_Y_Coordinate.removeAtIndex(self.SC_Y_Coordinate.startIndex)
                     self.SC_Y_CoordinateArray.append(self.SC_Y_Coordinate)
                     print(self.SC_Y_Coordinate)
                 }
@@ -300,3 +300,5 @@ class XMLParser: NSObject, NSXMLParserDelegate, CLLocationManagerDelegate {
         }
     }
 }
+ 
+ 

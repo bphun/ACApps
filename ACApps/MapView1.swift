@@ -6,11 +6,11 @@
 //  Copyright © 2016 Brandon Phan. All rights reserved.
 //
 
+/*
 import UIKit
 import MapKit
-import SlideMenuControllerSwift
 
-class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapView1: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var storyboardMapView: MKMapView!
     @IBOutlet weak var navigationBar: UINavigationItem!
@@ -30,7 +30,7 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             
             let extraImage = UIImage(named: "Extra")?.imageWithRenderingMode(.AlwaysTemplate)
                         
-            let barButtonItem = UIBarButtonItem(image: extraImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapView.barButtonItemAction(_:)))
+            let barButtonItem = UIBarButtonItem(image: extraImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapView1.barButtonItemAction(_:)))
             self.navigationBar.leftBarButtonItem = barButtonItem
             
         }
@@ -131,8 +131,8 @@ class MapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     }
 
     func barButtonItemAction(sender: UIBarButtonItem) {
-        SlideMenuOptions.rightViewWidth = 50
-        self.slideMenuController()?.openRight()
+
     }
     
 }
+ */
